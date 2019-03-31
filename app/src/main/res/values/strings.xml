@@ -9,4 +9,6 @@
     <string name="name">Enter your name</string>
     <string name="addPlaces">Add places</string>
     <string name="add">Add</string>
+    <string name="show_friends_places">Show friends\' places</string>
+    <string name="edit_my_place">Edit my places</string>
 </resources>
