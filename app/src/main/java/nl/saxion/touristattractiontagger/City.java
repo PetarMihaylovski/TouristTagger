@@ -8,11 +8,12 @@ public class City {
     private String name;
     private String country;
     private ArrayList<TouristAttraction> attractions;
-    private static String pictureID;
+    private String pictureID;
 
-    public City(String name, String country) {
+    public City(String name, String country, String pictureID) {
         this.name = name;
         this.country = country;
+        this.pictureID = pictureID;
         this.attractions = new ArrayList<>();
     }
 
@@ -26,7 +27,7 @@ public class City {
         return attractions;
     }
 
-    public static String getPictureID() {
+    public String getPictureID() {
         return pictureID;
     }
 

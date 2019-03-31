@@ -16,10 +16,10 @@ public class DataProvider {
     static {
         CITIES = new ArrayList<>();
         VISITED_PLACES = new ArrayList<>();
-        City amsterdam = new City("Amsterdam", "The Netherlands");
-        City deventer = new City("Deventer", "The Netherlands");
-        City sofia = new City("Sofia", "Bulgaria");
-        City plovdiv = new City("Plovdiv", "Bulgaria");
+        City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
+        City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
+        City sofia = new City("Sofia", "Bulgaria", "sofia_picture.jpg");
+        City plovdiv = new City("Plovdiv", "Bulgaria", "plovdiv_picture.jpeg");
 
         addCity(amsterdam);
         addCity(deventer);

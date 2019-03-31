@@ -77,7 +77,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
                 //TODO: switch intents with the right information.
                 Intent switchScreen = new Intent(AttractionSelectScreen.this, OptionsScreen.class);
                 switchScreen.putExtra(NAME_KEY, username);
-                switchScreen.putExtra(CITY_KEY, city.toString());
+                switchScreen.putExtra(CITY_KEY, city.getName());
                 startActivity(switchScreen);
             }
         });
