@@ -1,6 +1,5 @@
 package nl.saxion.touristattractiontagger.NormalLoginActivities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -44,8 +43,8 @@ public class OptionsScreen extends AppCompatActivity {
         InputStream inputStream = null;
         try {
             String imageFile = city.getPictureID();
-            Log.d("pls", "Picture drawable set");
             inputStream = getApplicationContext().getAssets().open(imageFile);
+            Log.d("pls", "Picture drawable set");
             Drawable d = Drawable.createFromStream(inputStream, null);
             picture.setImageDrawable(d);
         }
