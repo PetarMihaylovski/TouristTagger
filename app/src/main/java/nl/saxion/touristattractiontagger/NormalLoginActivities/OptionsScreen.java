@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,8 @@ import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
 
 public class OptionsScreen extends AppCompatActivity {
-
+    private Button btnShowFriends;
+    private Button btnEditPlaces;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,23 +30,23 @@ public class OptionsScreen extends AppCompatActivity {
         String cityAsString = prevScreen.getStringExtra(AttractionSelectScreen.CITY_KEY);
         City city = DataProvider.getCityByName(cityAsString);
 
+        this.btnShowFriends = findViewById(R.id.btnShowFriends);
         TextView tvCityNameDisplay = findViewById(R.id.tvCityName);
         TextView tvNameAndLocation = findViewById(R.id.tvUsernameAndLocation);
 
         tvCityNameDisplay.setText(String.format("%s", city));
         tvNameAndLocation.setText(String.format("%s is in %s", username, city));
         loadImage(city);
+
     }
 
     private void loadImage(City city){
-        Log.d("pls", "we are in the method");
-
+        //loads the image, based on the city chosen.
         ImageView picture = findViewById(R.id.ivPicture);
         InputStream inputStream = null;
         try {
             String imageFile = city.getPictureID();
             inputStream = getApplicationContext().getAssets().open(imageFile);
-            Log.d("pls", "Picture drawable set");
             Drawable d = Drawable.createFromStream(inputStream, null);
             picture.setImageDrawable(d);
         }
@@ -63,4 +65,12 @@ public class OptionsScreen extends AppCompatActivity {
         }
     }
 
+    private void showFriendsOnClickListener(){
+        this.btnShowFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchScreen = new Intent(OptionsScreen.this, )
+            }
+        });
+    }
 }
