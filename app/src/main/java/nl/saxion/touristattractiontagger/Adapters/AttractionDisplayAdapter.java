@@ -57,6 +57,8 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         }
         tvSpecialAttribute.setText(text);
 
+        this.cbAdd.setTag(position); // This line is important.
+
         return adCompound;
     }
 

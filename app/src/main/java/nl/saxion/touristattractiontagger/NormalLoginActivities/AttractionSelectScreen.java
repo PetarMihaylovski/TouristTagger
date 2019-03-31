@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 
 import nl.saxion.touristattractiontagger.Adapters.AttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
-import nl.saxion.touristattractiontagger.CompoundControls.AttractionDisplayCompound;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
@@ -25,17 +22,19 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 public class AttractionSelectScreen extends AppCompatActivity {
     private ListView listView;
     private City city; //the city
-    private String name; // the user's name
+    private String username; // the user's username
     private ArrayList<TouristAttraction> allAttractions;
+    public static final String NAME_KEY = "randomKeyGen";
+    public static final String CITY_KEY = "cityKeyGenerated";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attraction_select_screen);
         TextView tvNameAndLocation = findViewById(R.id.tvNameAndLocation);
-        //Get the name and the chosen city from the previous screen.
+        //Get the username and the chosen city from the previous screen.
         Intent intent = getIntent();
-        this.name = intent.getStringExtra(CitySelectScreen.NAME_KEY);
+        this.username = intent.getStringExtra(CitySelectScreen.NAME_KEY);
         String cityName = intent.getStringExtra(CitySelectScreen.CITY_KEY);
         this.city = DataProvider.getCityByName(cityName);
         try {
@@ -49,8 +48,8 @@ public class AttractionSelectScreen extends AppCompatActivity {
         //TODO: Sort the list Bar -> Restaurant -> Museum -> Theater
 //        Collections.sort(this.allAttractions);
 
-        //Display the name and the city.
-        tvNameAndLocation.setText(String.format("%s is in %s", name, city.getName()));
+        //Display the username and the city.
+        tvNameAndLocation.setText(String.format("%s is in %s", username, city.getName()));
 
         AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, allAttractions);
         this.listView = findViewById(R.id.lvAttractionsDisplay);
@@ -77,6 +76,9 @@ public class AttractionSelectScreen extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO: switch intents with the right information.
                 Intent switchScreen = new Intent(AttractionSelectScreen.this, OptionsScreen.class);
+                switchScreen.putExtra(NAME_KEY, username);
+                switchScreen.putExtra(CITY_KEY, city.toString());
+                startActivity(switchScreen);
             }
         });
     }
