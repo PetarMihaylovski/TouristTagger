@@ -3,6 +3,8 @@ package nl.saxion.touristattractiontagger.NormalLoginActivities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import nl.saxion.touristattractiontagger.R;
+
 public class DisplayFriendsLocationScreen extends AppCompatActivity {
 
     @Override

@@ -19,14 +19,18 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     private CheckBox cbAdd;
     private ArrayList<TouristAttraction> attractions;
+    private boolean[] cbValidation;
+    private int position;
 
-    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects) {
+    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects, boolean[] cbValidation) {
         super(context, R.layout.activity_attraction_select_screen, objects);
         this.attractions = objects;
+        this.cbValidation = cbValidation;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        this.position = position;
         AttractionDisplayCompound adCompound = new AttractionDisplayCompound(getContext());
 
         TextView tvName = adCompound.getTvName();
@@ -35,7 +39,6 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         this.cbAdd = adCompound.getCbAddVisitedPlaces();
 
         final TouristAttraction currTouristAttraction = attractions.get(position);
-        cbAddOnClick(currTouristAttraction);
 
         String text = "Name: " + currTouristAttraction.getName();
         tvName.setText(text);
@@ -57,8 +60,14 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         }
         tvSpecialAttribute.setText(text);
 
-        this.cbAdd.setTag(position); // This line is important.
+        if (!this.cbValidation[position]){
+            this.cbAdd.setChecked(false);
+        }
+        else {
+            this.cbAdd.setChecked(true);
+        }
 
+        cbAddOnClick(currTouristAttraction);
         return adCompound;
     }
 
@@ -68,10 +77,12 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    cbValidation[position] = true;
                     DataProvider.addVisitedTouristAttraction(currTouristAttraction);
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }
                 else {
+                    cbValidation[position] = false;
                     DataProvider.removeTouristAttraction(currTouristAttraction);
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }

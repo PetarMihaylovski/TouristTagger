@@ -69,7 +69,8 @@ public class OptionsScreen extends AppCompatActivity {
         this.btnShowFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchScreen = new Intent(OptionsScreen.this, )
+                Intent switchScreen = new Intent(OptionsScreen.this, DisplayFriendsLocationScreen.class);
+
             }
         });
     }
