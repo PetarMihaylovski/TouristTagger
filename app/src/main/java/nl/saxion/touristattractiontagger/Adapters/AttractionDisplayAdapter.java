@@ -76,7 +76,10 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     currTouristAttraction.setHaveBeenThere(true);
-                    DataProvider.addVisitedTouristAttraction(currTouristAttraction);
+
+                    if (!DataProvider.VISITED_PLACES.contains(currTouristAttraction)){
+                        DataProvider.addVisitedTouristAttraction(currTouristAttraction);
+                    }
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }
                 else {
