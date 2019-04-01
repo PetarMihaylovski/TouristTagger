@@ -21,4 +21,10 @@ public class Restaurant extends TouristAttraction {
     public String getType() {
         return "Restaurant";
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
+

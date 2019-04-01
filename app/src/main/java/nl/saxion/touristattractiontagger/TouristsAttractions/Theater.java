@@ -17,4 +17,9 @@ public class Theater extends TouristAttraction {
     public String getSpecialAttribute() {
         return this.play;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

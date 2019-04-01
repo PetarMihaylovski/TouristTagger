@@ -11,11 +11,14 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
 public class DataProvider {
     public static ArrayList<City> CITIES; //TODO: Implement a HashSet if possible
-    public static ArrayList<TouristAttraction> VISITED_PLACES;
+    public static ArrayList<TouristAttraction> TEMP_VISITED_PLACES; //TODO: rename with a better name
+    public static ArrayList<TouristAttraction> PERMANENT_VISITED_PLACES; //TODO: rename with a better name
 
     static {
         CITIES = new ArrayList<>();
-        VISITED_PLACES = new ArrayList<>();
+        TEMP_VISITED_PLACES = new ArrayList<>();
+        PERMANENT_VISITED_PLACES = new ArrayList<>();
+
         City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
         City sofia = new City("Sofia", "Bulgaria", "sofia_picture.jpg");
@@ -59,10 +62,12 @@ public class DataProvider {
 
     //TODO: check if the TA is already in the list.
     public static void addVisitedTouristAttraction(TouristAttraction visited){
-        VISITED_PLACES.add(visited);
+        TEMP_VISITED_PLACES.add(visited);
     }
 
     public static void removeTouristAttraction(TouristAttraction touristAttraction){
-        VISITED_PLACES.remove(touristAttraction);
+        TEMP_VISITED_PLACES.remove(touristAttraction);
     }
+
+    public ArrayList<>
 }

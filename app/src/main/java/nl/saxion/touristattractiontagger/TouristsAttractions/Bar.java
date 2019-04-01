@@ -18,4 +18,9 @@ public class Bar extends TouristAttraction {
     public String getType() {
         return "Bar";
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

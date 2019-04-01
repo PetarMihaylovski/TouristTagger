@@ -18,4 +18,9 @@ public class Museum extends TouristAttraction {
     public String getSpecialAttribute() {
         return this.exhibition;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

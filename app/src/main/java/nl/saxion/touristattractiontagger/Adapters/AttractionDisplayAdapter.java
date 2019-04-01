@@ -78,15 +78,15 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
                 if (isChecked) {
                     currTouristAttraction.setChecked(true);
 
-                    if (!DataProvider.VISITED_PLACES.contains(currTouristAttraction)){
+                    if (!DataProvider.TEMP_VISITED_PLACES.contains(currTouristAttraction)){
                         DataProvider.addVisitedTouristAttraction(currTouristAttraction);
                     }
-                    Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
+                    Log.d("testHELP", "" + DataProvider.TEMP_VISITED_PLACES);
                 }
                 else {
                     currTouristAttraction.setChecked(false);
                     DataProvider.removeTouristAttraction(currTouristAttraction);
-                    Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
+                    Log.d("testHELP", "" + DataProvider.TEMP_VISITED_PLACES);
                 }
             }
         });
