@@ -29,13 +29,16 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         AttractionDisplayCompound adCompound = new AttractionDisplayCompound(getContext());
 
+        //assign the views.
         TextView tvName = adCompound.getTvName();
         TextView tvType = adCompound.getTvType();
         TextView tvSpecialAttribute = adCompound.getTvSpecialAttribute();
         this.cbAdd = adCompound.getCbAddVisitedPlaces();
 
+        //get the current tourist attraction.
         final TouristAttraction currTouristAttraction = attractions.get(position);
 
+        //set the text for the listView.
         String text = "Name: " + currTouristAttraction.getName();
         tvName.setText(text);
 
@@ -56,9 +59,9 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         }
         tvSpecialAttribute.setText(text);
 
+        //onClickListener for the checkbox.
         cbAddOnClick(currTouristAttraction);
-
-        if (currTouristAttraction.isHaveBeenThere()){
+        if (currTouristAttraction.isHasBeenThere()){
             this.cbAdd.setChecked(true);
         }
         else {
@@ -69,13 +72,11 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     }
 
     private void cbAddOnClick(final TouristAttraction currTouristAttraction) {
-
-        //TODO: when ticked and scrolled down, the add thick unthicks. Fix me!
         cbAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    currTouristAttraction.setHaveBeenThere(true);
+                    currTouristAttraction.setHasBeenThere(true);
 
                     if (!DataProvider.VISITED_PLACES.contains(currTouristAttraction)){
                         DataProvider.addVisitedTouristAttraction(currTouristAttraction);
@@ -83,7 +84,7 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }
                 else {
-                    currTouristAttraction.setHaveBeenThere(false);
+                    currTouristAttraction.setHasBeenThere(false);
                     DataProvider.removeTouristAttraction(currTouristAttraction);
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }

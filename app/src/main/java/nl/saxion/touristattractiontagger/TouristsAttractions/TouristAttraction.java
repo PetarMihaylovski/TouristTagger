@@ -3,25 +3,22 @@ package nl.saxion.touristattractiontagger.TouristsAttractions;
 public abstract class TouristAttraction {
     private String name;
     private String location;
-    private boolean isOnList;
+    private boolean hasBeenThere;
 
-    public boolean isHaveBeenThere() {
-        return haveBeenThere;
-    }
-
-    public void setHaveBeenThere(boolean haveBeenThere) {
-        this.haveBeenThere = haveBeenThere;
-    }
-
-    private boolean haveBeenThere = false;
 
     public TouristAttraction(String name, String location) {
         this.name = name;
         this.location = location;
-        this.isOnList = false;
+        this.hasBeenThere = false;
     }
 
+    public void setHasBeenThere(boolean hasBeenThere) {
+        this.hasBeenThere = hasBeenThere;
+    }
 
+    public boolean isHasBeenThere() {
+        return hasBeenThere;
+    }
 
     public abstract String getType();
 
@@ -33,14 +30,6 @@ public abstract class TouristAttraction {
 
     public String getLocation() {
         return location;
-    }
-
-    public boolean isOnList() {
-        return isOnList;
-    }
-
-    public void setIsOnList(boolean isOnList){
-        this.isOnList = isOnList;
     }
 
     //TODO: make a real toString method.
