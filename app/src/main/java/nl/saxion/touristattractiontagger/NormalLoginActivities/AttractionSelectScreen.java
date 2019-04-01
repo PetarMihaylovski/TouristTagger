@@ -1,6 +1,7 @@
 package nl.saxion.touristattractiontagger.NormalLoginActivities;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
     private ArrayList<TouristAttraction> allAttractions;
     public static final String NAME_KEY = "randomKeyGen";
     public static final String CITY_KEY = "cityKeyGenerated";
+    public static final int CONFIRMATION_CODE = 126;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +80,20 @@ public class AttractionSelectScreen extends AppCompatActivity {
                 Intent switchScreen = new Intent(AttractionSelectScreen.this, OptionsScreen.class);
                 switchScreen.putExtra(NAME_KEY, username);
                 switchScreen.putExtra(CITY_KEY, city.getName());
-                startActivity(switchScreen);
+                startActivityForResult(switchScreen, CONFIRMATION_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CONFIRMATION_CODE && resultCode == RESULT_OK){
+            //just test
+            Log.d("justTest", "Success");
+        }
+
     }
 }
 

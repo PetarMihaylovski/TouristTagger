@@ -61,7 +61,7 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
 
         //onClickListener for the checkbox.
         cbAddOnClick(currTouristAttraction);
-        if (currTouristAttraction.isHasBeenThere()){
+        if (currTouristAttraction.isChecked()){
             this.cbAdd.setChecked(true);
         }
         else {
@@ -76,7 +76,7 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    currTouristAttraction.setHasBeenThere(true);
+                    currTouristAttraction.setChecked(true);
 
                     if (!DataProvider.VISITED_PLACES.contains(currTouristAttraction)){
                         DataProvider.addVisitedTouristAttraction(currTouristAttraction);
@@ -84,7 +84,7 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }
                 else {
-                    currTouristAttraction.setHasBeenThere(false);
+                    currTouristAttraction.setChecked(false);
                     DataProvider.removeTouristAttraction(currTouristAttraction);
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }

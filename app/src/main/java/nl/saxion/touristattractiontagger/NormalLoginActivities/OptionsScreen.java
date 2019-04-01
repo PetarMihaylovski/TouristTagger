@@ -31,6 +31,7 @@ public class OptionsScreen extends AppCompatActivity {
         City city = DataProvider.getCityByName(cityAsString);
 
         this.btnShowFriends = findViewById(R.id.btnShowFriends);
+        this.btnEditPlaces = findViewById(R.id.btnEditPlaces);
         TextView tvCityNameDisplay = findViewById(R.id.tvCityName);
         TextView tvNameAndLocation = findViewById(R.id.tvUsernameAndLocation);
 
@@ -38,6 +39,7 @@ public class OptionsScreen extends AppCompatActivity {
         tvNameAndLocation.setText(String.format("%s is in %s", username, city));
         loadImage(city);
         showFriendsOnClickListener();
+        editSelectedPlacesOnClickListener();
     }
 
     private void loadImage(City city){
@@ -71,6 +73,17 @@ public class OptionsScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent switchScreen = new Intent(OptionsScreen.this, DisplayFriendsLocationScreen.class);
                 startActivity(switchScreen);
+            }
+        });
+    }
+
+    private void editSelectedPlacesOnClickListener(){
+        this.btnEditPlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent prevScreen = new Intent();
+                setResult(RESULT_OK, prevScreen);
+                finish();
             }
         });
     }

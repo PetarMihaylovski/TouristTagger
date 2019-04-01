@@ -3,21 +3,20 @@ package nl.saxion.touristattractiontagger.TouristsAttractions;
 public abstract class TouristAttraction {
     private String name;
     private String location;
-    private boolean hasBeenThere;
-
+    private boolean checked; //a variable needed for the checkbox.
 
     public TouristAttraction(String name, String location) {
         this.name = name;
         this.location = location;
-        this.hasBeenThere = false;
+        this.checked = false;
     }
 
-    public void setHasBeenThere(boolean hasBeenThere) {
-        this.hasBeenThere = hasBeenThere;
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
-    public boolean isHasBeenThere() {
-        return hasBeenThere;
+    public boolean isChecked() {
+        return checked;
     }
 
     public abstract String getType();
