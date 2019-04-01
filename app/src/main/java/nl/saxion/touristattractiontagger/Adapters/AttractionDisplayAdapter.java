@@ -19,18 +19,14 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     private CheckBox cbAdd;
     private ArrayList<TouristAttraction> attractions;
-    private boolean[] cbValidation;
-    private int position;
 
-    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects, boolean[] cbValidation) {
+    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects) {
         super(context, R.layout.activity_attraction_select_screen, objects);
         this.attractions = objects;
-        this.cbValidation = cbValidation;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        this.position = position;
         AttractionDisplayCompound adCompound = new AttractionDisplayCompound(getContext());
 
         TextView tvName = adCompound.getTvName();
@@ -60,29 +56,31 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         }
         tvSpecialAttribute.setText(text);
 
-        if (!this.cbValidation[position]){
-            this.cbAdd.setChecked(false);
-        }
-        else {
+        cbAddOnClick(currTouristAttraction);
+
+        if (currTouristAttraction.isHaveBeenThere()){
             this.cbAdd.setChecked(true);
         }
+        else {
+            this.cbAdd.setChecked(false);
+        }
 
-        cbAddOnClick(currTouristAttraction);
         return adCompound;
     }
 
     private void cbAddOnClick(final TouristAttraction currTouristAttraction) {
+
         //TODO: when ticked and scrolled down, the add thick unthicks. Fix me!
         cbAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    cbValidation[position] = true;
+                    currTouristAttraction.setHaveBeenThere(true);
                     DataProvider.addVisitedTouristAttraction(currTouristAttraction);
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }
                 else {
-                    cbValidation[position] = false;
+                    currTouristAttraction.setHaveBeenThere(false);
                     DataProvider.removeTouristAttraction(currTouristAttraction);
                     Log.d("testHELP", "" + DataProvider.VISITED_PLACES);
                 }

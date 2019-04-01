@@ -11,9 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import nl.saxion.touristattractiontagger.Adapters.AttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
@@ -28,12 +26,12 @@ public class AttractionSelectScreen extends AppCompatActivity {
     private ArrayList<TouristAttraction> allAttractions;
     public static final String NAME_KEY = "randomKeyGen";
     public static final String CITY_KEY = "cityKeyGenerated";
-    boolean[] cbValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attraction_select_screen);
+
         TextView tvNameAndLocation = findViewById(R.id.tvNameAndLocation);
         //Get the username and the chosen city from the previous screen.
         Intent intent = getIntent();
@@ -48,24 +46,18 @@ public class AttractionSelectScreen extends AppCompatActivity {
             Log.d("nullPointer", "Attraction not found.");
         }
 
-        this.cbValidation = new boolean[this.allAttractions.size()];
-        Arrays.fill(this.cbValidation, false);
-
-
         //TODO: Sort the list Bar -> Restaurant -> Museum -> Theater
 //        Collections.sort(this.allAttractions);
 
         //Display the username and the city.
         tvNameAndLocation.setText(String.format("%s is in %s", username, city.getName()));
 
-        AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions, this.cbValidation);
+        AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions);
         this.listView = findViewById(R.id.lvAttractionsDisplay);
         this.listView.setAdapter(adapter);
-        //TODO: figure out how to add the things to the next activity.
 
         locationDisplayOnClickListener();
-        addAttractions();
-        listView.invalidate();
+        addAttractionsOnClickListener();
     }
 
     private void locationDisplayOnClickListener() {
@@ -77,7 +69,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
         });
     }
 
-    private void addAttractions(){
+    private void addAttractionsOnClickListener(){
         Button addPlacesButton = findViewById(R.id.addPlacesButton);
         addPlacesButton.setOnClickListener(new View.OnClickListener() {
             @Override

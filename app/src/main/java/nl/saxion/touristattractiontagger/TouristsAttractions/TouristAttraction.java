@@ -5,11 +5,23 @@ public abstract class TouristAttraction {
     private String location;
     private boolean isOnList;
 
+    public boolean isHaveBeenThere() {
+        return haveBeenThere;
+    }
+
+    public void setHaveBeenThere(boolean haveBeenThere) {
+        this.haveBeenThere = haveBeenThere;
+    }
+
+    private boolean haveBeenThere = false;
+
     public TouristAttraction(String name, String location) {
         this.name = name;
         this.location = location;
         this.isOnList = false;
     }
+
+
 
     public abstract String getType();
 

@@ -37,7 +37,7 @@ public class OptionsScreen extends AppCompatActivity {
         tvCityNameDisplay.setText(String.format("%s", city));
         tvNameAndLocation.setText(String.format("%s is in %s", username, city));
         loadImage(city);
-
+        showFriendsOnClickListener();
     }
 
     private void loadImage(City city){
@@ -70,7 +70,7 @@ public class OptionsScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent switchScreen = new Intent(OptionsScreen.this, DisplayFriendsLocationScreen.class);
-
+                startActivity(switchScreen);
             }
         });
     }
