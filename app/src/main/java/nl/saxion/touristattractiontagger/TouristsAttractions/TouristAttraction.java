@@ -31,9 +31,8 @@ public abstract class TouristAttraction {
         return location;
     }
 
-    //TODO: make a real toString method.
     @Override
     public String toString() {
-        return getName() + " (" + getType() + ")";
+        return getName() + " (" + getType() + ")\n";
     }
 }

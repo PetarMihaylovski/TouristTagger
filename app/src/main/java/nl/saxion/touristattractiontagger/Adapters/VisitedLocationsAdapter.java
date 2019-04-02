@@ -15,6 +15,7 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 public class VisitedLocationsAdapter extends ArrayAdapter<TouristAttraction> {
     private ArrayList<TouristAttraction> finalVisited;   //TODO: rename with a better name.
     private LayoutInflater inflater;
+
     public VisitedLocationsAdapter(Context context, ArrayList<TouristAttraction> objects) {
         super(context, R.layout.custom_friends_display , objects);
         finalVisited = objects;
@@ -28,6 +29,8 @@ public class VisitedLocationsAdapter extends ArrayAdapter<TouristAttraction> {
         }
 
         TextView tvTest = convertView.findViewById(R.id.textView);
-        tvTest.setText();
+        tvTest.setText(String.format("%s", finalVisited.get(position)));
+
+        return convertView;
     }
 }

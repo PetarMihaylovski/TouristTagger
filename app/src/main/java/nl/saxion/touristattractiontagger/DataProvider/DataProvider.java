@@ -69,5 +69,8 @@ public class DataProvider {
         TEMP_VISITED_PLACES.remove(touristAttraction);
     }
 
-    public ArrayList<>
+    public ArrayList<TouristAttraction> getPermanentVisitedPlaces(){
+        ArrayList<TouristAttraction> permanentAttractions = new ArrayList<>(PERMANENT_VISITED_PLACES);
+        return permanentAttractions;
+    }
 }
