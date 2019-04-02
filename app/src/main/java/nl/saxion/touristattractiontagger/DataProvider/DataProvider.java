@@ -61,26 +61,27 @@ public class DataProvider {
     }
 
     //TODO: check if the TA is already in the list.
-    public static void addVisitedTouristAttraction(TouristAttraction visited){
+    public static void addVisitedTouristAttraction(TouristAttraction visited) {
         TEMP_VISITED_PLACES.add(visited);
     }
 
-    public static void removeTouristAttraction(TouristAttraction touristAttraction){
+    public static void removeTouristAttraction(TouristAttraction touristAttraction) {
         TEMP_VISITED_PLACES.remove(touristAttraction);
     }
 
-    public ArrayList<TouristAttraction> getPermanentVisitedPlaces(){
+    public ArrayList<TouristAttraction> getPermanentVisitedPlaces() {
         ArrayList<TouristAttraction> permanentAttractions = new ArrayList<>(PERMANENT_VISITED_PLACES);
         return permanentAttractions;
     }
 
     /**
      * Transfer data between two arrayLists
+     *
      * @param from the arrayList to be deleted
-     * @param to the arrayList to be overwritten
+     * @param to   the arrayList to be overwritten
      */
-    public static void dataTransfer(ArrayList<TouristAttraction> from, ArrayList<TouristAttraction> to){
-        to = from;
+    public static void dataTransfer(ArrayList<TouristAttraction> from, ArrayList<TouristAttraction> to) {
+        to.addAll(from);
         from.clear();
     }
 }
