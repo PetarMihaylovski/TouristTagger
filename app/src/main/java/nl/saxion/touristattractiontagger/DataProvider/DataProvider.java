@@ -73,4 +73,14 @@ public class DataProvider {
         ArrayList<TouristAttraction> permanentAttractions = new ArrayList<>(PERMANENT_VISITED_PLACES);
         return permanentAttractions;
     }
+
+    /**
+     * Transfer data between two arrayLists
+     * @param from the arrayList to be deleted
+     * @param to the arrayList to be overwritten
+     */
+    public static void dataTransfer(ArrayList<TouristAttraction> from, ArrayList<TouristAttraction> to){
+        to = from;
+        from.clear();
+    }
 }
