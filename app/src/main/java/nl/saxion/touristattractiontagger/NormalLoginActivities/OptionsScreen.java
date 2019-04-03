@@ -44,7 +44,7 @@ public class OptionsScreen extends AppCompatActivity {
         TextView tvNameAndLocation = findViewById(R.id.tvUsernameAndLocation);
 
         tvCityNameDisplay.setText(String.format("%s", city));
-        tvNameAndLocation.setText(String.format("%s is in %s", user, city));
+        tvNameAndLocation.setText(String.format("%s is in %s", this.user.getName(), city));
         loadImage(city);
         showFriendsOnClickListener();
         editSelectedPlacesOnClickListener();

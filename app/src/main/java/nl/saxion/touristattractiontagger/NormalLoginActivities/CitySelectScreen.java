@@ -3,6 +3,7 @@ package nl.saxion.touristattractiontagger.NormalLoginActivities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -31,8 +32,6 @@ public class CitySelectScreen extends AppCompatActivity {
         cities = DataProvider.CITIES;
         this.nameInput = findViewById(R.id.etNameInput);
         this.nameInput.setText("");
-        final String userName = nameInput.getText().toString();
-
         //Instantiating the list view with adapter.
         CityDisplayAdapter adapter = new CityDisplayAdapter(this, cities);
         ListView listView = findViewById(R.id.lvCitiesDisplay);
@@ -46,10 +45,13 @@ public class CitySelectScreen extends AppCompatActivity {
                     Toast.makeText(CitySelectScreen.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Intent switchScreen = new Intent(CitySelectScreen.this, AttractionSelectScreen.class);
+                    //getting the name from the editText.
+                    String userName = nameInput.getText().toString();
                     selectedCity = cities.get(position).getName();
                     //creating a new user instance.
                     DataProvider.addUser(userName, "", cities.get(position));
+
+                    Intent switchScreen = new Intent(CitySelectScreen.this, AttractionSelectScreen.class);
                     switchScreen.putExtra(NAME_KEY, userName);
                     switchScreen.putExtra(CITY_KEY, selectedCity);
                     startActivity(switchScreen);

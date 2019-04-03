@@ -58,7 +58,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
 //        Collections.sort(this.allAttractions);
 
         //Display the username and the city.
-        tvNameAndLocation.setText(String.format("%s is in %s", this.user, city.getName()));
+        tvNameAndLocation.setText(String.format("%s is in %s", this.user.getName(), city.getName()));
 
         AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions);
         this.listView = findViewById(R.id.lvAttractionsDisplay);
