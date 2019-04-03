@@ -61,6 +61,7 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent switchScreens = new Intent(DisplayFriendsLocationScreen.this, LoginScreen.class);
+                userName = "";
                 startActivity(switchScreens);
             }
         });
