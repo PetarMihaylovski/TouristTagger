@@ -88,7 +88,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        //TODO: remove me when needed!
         if (requestCode == CONFIRMATION_CODE && resultCode == RESULT_OK){
             //just test
             Log.d("justTest", "Success");

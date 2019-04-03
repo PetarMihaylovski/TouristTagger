@@ -19,6 +19,12 @@ import nl.saxion.touristattractiontagger.R;
 public class OptionsScreen extends AppCompatActivity {
     private Button btnShowFriends;
     private Button btnEditPlaces;
+    private String userName;
+    public static final String USERNAME_KEY = "gettoBoye";
+    public static final String CITY_STR_KEY = "it is me MARIO!";
+    private String cityAsString;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +32,8 @@ public class OptionsScreen extends AppCompatActivity {
 
         //Get the information from the previous screen.
         Intent prevScreen = getIntent();
-        String username = prevScreen.getStringExtra(AttractionSelectScreen.NAME_KEY);
-        String cityAsString = prevScreen.getStringExtra(AttractionSelectScreen.CITY_KEY);
+        userName = prevScreen.getStringExtra(AttractionSelectScreen.NAME_KEY);
+        cityAsString = prevScreen.getStringExtra(AttractionSelectScreen.CITY_KEY);
         City city = DataProvider.getCityByName(cityAsString);
 
         this.btnShowFriends = findViewById(R.id.btnShowFriends);
@@ -36,13 +42,13 @@ public class OptionsScreen extends AppCompatActivity {
         TextView tvNameAndLocation = findViewById(R.id.tvUsernameAndLocation);
 
         tvCityNameDisplay.setText(String.format("%s", city));
-        tvNameAndLocation.setText(String.format("%s is in %s", username, city));
+        tvNameAndLocation.setText(String.format("%s is in %s", userName, city));
         loadImage(city);
         showFriendsOnClickListener();
         editSelectedPlacesOnClickListener();
     }
 
-    private void loadImage(City city){
+    private void loadImage(City city) {
         //loads the image, based on the city chosen.
         ImageView picture = findViewById(R.id.ivPicture);
         InputStream inputStream = null;
@@ -52,32 +58,34 @@ public class OptionsScreen extends AppCompatActivity {
             Drawable d = Drawable.createFromStream(inputStream, null);
             picture.setImageDrawable(d);
         }
-        catch (IOException ioe){
+        catch (IOException ioe) {
             ioe.printStackTrace();
         }
         finally {
-            try{
-                if (inputStream != null){
+            try {
+                if (inputStream != null) {
                     inputStream.close();
                 }
             }
-            catch (IOException e){
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void showFriendsOnClickListener(){
+    private void showFriendsOnClickListener() {
         this.btnShowFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent switchScreen = new Intent(OptionsScreen.this, DisplayFriendsLocationScreen.class);
+                switchScreen.putExtra(USERNAME_KEY, userName);
+                switchScreen.putExtra(CITY_STR_KEY, cityAsString);
                 startActivity(switchScreen);
             }
         });
     }
 
-    private void editSelectedPlacesOnClickListener(){
+    private void editSelectedPlacesOnClickListener() {
         this.btnEditPlaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
