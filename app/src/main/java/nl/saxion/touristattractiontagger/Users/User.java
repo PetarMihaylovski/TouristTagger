@@ -1,6 +1,6 @@
 package nl.saxion.touristattractiontagger.Users;
 
-public class User {
+public abstract class User {
     private String name;
 
     public User(String name){
@@ -10,4 +10,6 @@ public class User {
     public String getName() {
         return name;
     }
+
+
 }
