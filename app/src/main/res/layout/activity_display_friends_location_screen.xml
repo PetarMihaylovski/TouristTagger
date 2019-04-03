@@ -23,7 +23,10 @@
             android:id="@+id/tvDataDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:fontFamily="sans-serif-light"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="18sp" />
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

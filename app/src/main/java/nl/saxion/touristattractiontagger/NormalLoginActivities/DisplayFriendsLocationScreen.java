@@ -12,26 +12,33 @@ import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
 public class DisplayFriendsLocationScreen extends AppCompatActivity {
+    private String userName;
+    private City city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_friends_location_screen);
-        
+
         DataProvider.dataTransfer(DataProvider.TEMP_VISITED_PLACES, DataProvider.PERMANENT_VISITED_PLACES);
         ScrollView svTest = findViewById(R.id.scScroll);
         TextView tvDisplay = svTest.findViewById(R.id.tvDataDisplay);
 
+        //getting the data from the previous screen.
         Intent prevScreen = getIntent();
-        String userName = prevScreen.getStringExtra(OptionsScreen.USERNAME_KEY);
+        userName = prevScreen.getStringExtra(OptionsScreen.USERNAME_KEY);
         String cityString = prevScreen.getStringExtra(OptionsScreen.CITY_STR_KEY);
-        City city = DataProvider.getCityByName(cityString);
+        city = DataProvider.getCityByName(cityString);
 
+        displayData(tvDisplay);
+
+    }
+
+    private void displayData(TextView tvDisplay){
         tvDisplay.setText(String.format("%s has been in %s\n", userName, city));
         //TODO: make the data look nice!
         for (TouristAttraction ta : DataProvider.PERMANENT_VISITED_PLACES) {
             tvDisplay.setText(String.format("%s %s\n\t", tvDisplay.getText().toString(), ta));
         }
-        
     }
 }

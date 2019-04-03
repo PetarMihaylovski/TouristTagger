@@ -10,7 +10,7 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
 public class DataProvider {
-    public static ArrayList<City> CITIES; //TODO: Implement a HashSet if possible
+    public static ArrayList<City> CITIES;
     public static ArrayList<TouristAttraction> TEMP_VISITED_PLACES; //TODO: rename with a better name
     public static ArrayList<TouristAttraction> PERMANENT_VISITED_PLACES; //TODO: rename with a better name
 
@@ -30,7 +30,6 @@ public class DataProvider {
         addCity(plovdiv);
 
         //TODO: add tourist attractions in the city here.
-        //TODO: find a nice design to display the attractions.
         amsterdam.addAttraction(new Bar("Door 74", "Reguliersdwarsstraat 74", "Bloody Marry"));
         amsterdam.addAttraction(new Bar("Brouwerij 't IJ", "Funenkade 7", "Cuba Libre"));
         amsterdam.addAttraction(new Bar("Hiding In Plain Sight", "Rapenburg 18", "Pina Colada"));
@@ -69,6 +68,7 @@ public class DataProvider {
         TEMP_VISITED_PLACES.remove(touristAttraction);
     }
 
+    //TODO: if not used, delete
     public ArrayList<TouristAttraction> getPermanentVisitedPlaces() {
         ArrayList<TouristAttraction> permanentAttractions = new ArrayList<>(PERMANENT_VISITED_PLACES);
         return permanentAttractions;
