@@ -1,5 +1,7 @@
 package nl.saxion.touristattractiontagger.Users;
 
+import androidx.annotation.NonNull;
+
 public abstract class User {
     private String name;
 
@@ -11,5 +13,9 @@ public abstract class User {
         return name;
     }
 
-
+    @NonNull
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

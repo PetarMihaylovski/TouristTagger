@@ -15,11 +15,12 @@ import java.io.InputStream;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
+import nl.saxion.touristattractiontagger.Users.BasicUser;
 
 public class OptionsScreen extends AppCompatActivity {
     private Button btnShowFriends;
     private Button btnEditPlaces;
-    private String userName;
+    private BasicUser user;
     public static final String USERNAME_KEY = "gettoBoye";
     public static final String CITY_STR_KEY = "it is me MARIO!";
     private String cityAsString;
@@ -32,7 +33,8 @@ public class OptionsScreen extends AppCompatActivity {
 
         //Get the information from the previous screen.
         Intent prevScreen = getIntent();
-        userName = prevScreen.getStringExtra(AttractionSelectScreen.NAME_KEY);
+        String userAsString = prevScreen.getStringExtra(AttractionSelectScreen.NAME_KEY);
+        this.user = (BasicUser) DataProvider.getUserByName(userAsString);
         cityAsString = prevScreen.getStringExtra(AttractionSelectScreen.CITY_KEY);
         City city = DataProvider.getCityByName(cityAsString);
 
@@ -42,7 +44,7 @@ public class OptionsScreen extends AppCompatActivity {
         TextView tvNameAndLocation = findViewById(R.id.tvUsernameAndLocation);
 
         tvCityNameDisplay.setText(String.format("%s", city));
-        tvNameAndLocation.setText(String.format("%s is in %s", userName, city));
+        tvNameAndLocation.setText(String.format("%s is in %s", user, city));
         loadImage(city);
         showFriendsOnClickListener();
         editSelectedPlacesOnClickListener();
@@ -78,7 +80,7 @@ public class OptionsScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent switchScreen = new Intent(OptionsScreen.this, DisplayFriendsLocationScreen.class);
-                switchScreen.putExtra(USERNAME_KEY, userName);
+                switchScreen.putExtra(USERNAME_KEY, user.toString());
                 switchScreen.putExtra(CITY_STR_KEY, cityAsString);
                 startActivity(switchScreen);
             }

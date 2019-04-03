@@ -19,11 +19,13 @@ import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
+import nl.saxion.touristattractiontagger.Users.BasicUser;
+import nl.saxion.touristattractiontagger.Users.User;
 
 public class AttractionSelectScreen extends AppCompatActivity {
     private ListView listView;
     private City city; //the city
-    private String username; // the user's username
+    private BasicUser user;
     private ArrayList<TouristAttraction> allAttractions;
     public static final String NAME_KEY = "randomKeyGen";
     public static final String CITY_KEY = "cityKeyGenerated";
@@ -35,11 +37,15 @@ public class AttractionSelectScreen extends AppCompatActivity {
         setContentView(R.layout.activity_attraction_select_screen);
 
         TextView tvNameAndLocation = findViewById(R.id.tvNameAndLocation);
+
+        String usernameAsString;
         //Get the username and the chosen city from the previous screen.
         Intent intent = getIntent();
-        this.username = intent.getStringExtra(CitySelectScreen.NAME_KEY);
+        usernameAsString = intent.getStringExtra(CitySelectScreen.NAME_KEY);
+        this.user = (BasicUser) DataProvider.getUserByName(usernameAsString);
         String cityName = intent.getStringExtra(CitySelectScreen.CITY_KEY);
         this.city = DataProvider.getCityByName(cityName);
+
         try {
             //Link the city with its arrayList of allAttractions.
             this.allAttractions = city.getAttractions();
@@ -52,7 +58,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
 //        Collections.sort(this.allAttractions);
 
         //Display the username and the city.
-        tvNameAndLocation.setText(String.format("%s is in %s", username, city.getName()));
+        tvNameAndLocation.setText(String.format("%s is in %s", this.user, city.getName()));
 
         AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions);
         this.listView = findViewById(R.id.lvAttractionsDisplay);
@@ -78,22 +84,11 @@ public class AttractionSelectScreen extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO: switch intents with the right information.
                 Intent switchScreen = new Intent(AttractionSelectScreen.this, OptionsScreen.class);
-                switchScreen.putExtra(NAME_KEY, username);
+                switchScreen.putExtra(NAME_KEY, user.toString());
                 switchScreen.putExtra(CITY_KEY, city.getName());
                 startActivityForResult(switchScreen, CONFIRMATION_CODE);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //TODO: remove me when needed!
-        if (requestCode == CONFIRMATION_CODE && resultCode == RESULT_OK){
-            //just test
-            Log.d("justTest", "Success");
-        }
-
     }
 }
 
