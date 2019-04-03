@@ -2,11 +2,11 @@ package nl.saxion.touristattractiontagger.Users;
 
 import nl.saxion.touristattractiontagger.City;
 
-public class BasicUser {
+public class BasicUser extends User{
     private City visitedCity;
 
-    public BasicUser(City city){
-        super();
+    public BasicUser(String name,City city){
+        super(name);
         this.visitedCity = city;
     }
 

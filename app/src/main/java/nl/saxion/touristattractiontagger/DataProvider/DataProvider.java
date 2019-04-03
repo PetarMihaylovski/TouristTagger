@@ -8,13 +8,18 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
+import nl.saxion.touristattractiontagger.Users.Administrator;
+import nl.saxion.touristattractiontagger.Users.BasicUser;
+import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
+    public static ArrayList<User> USERS;
     public static ArrayList<City> CITIES;
     public static ArrayList<TouristAttraction> TEMP_VISITED_PLACES; //TODO: rename with a better name
     public static ArrayList<TouristAttraction> PERMANENT_VISITED_PLACES; //TODO: rename with a better name
 
     static {
+        USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
         TEMP_VISITED_PLACES = new ArrayList<>();
         PERMANENT_VISITED_PLACES = new ArrayList<>();
@@ -59,6 +64,25 @@ public class DataProvider {
         return null;
     }
 
+    public static void addUser(String name, String password, City city){
+        if (password.equals("")){
+            USERS.add(new BasicUser(name, city));
+        }
+        else {
+            USERS.add(new Administrator(name,password));
+        }
+
+    }
+
+    public static User getUserByName(String name){
+        for (User user : USERS){
+            if (user.getName().equals(name)){
+                return user;
+            }
+        }
+        return null;
+    }
+
     //TODO: check if the TA is already in the list.
     public static void addVisitedTouristAttraction(TouristAttraction visited) {
         TEMP_VISITED_PLACES.add(visited);
@@ -66,12 +90,6 @@ public class DataProvider {
 
     public static void removeTouristAttraction(TouristAttraction touristAttraction) {
         TEMP_VISITED_PLACES.remove(touristAttraction);
-    }
-
-    //TODO: if not used, delete
-    public ArrayList<TouristAttraction> getPermanentVisitedPlaces() {
-        ArrayList<TouristAttraction> permanentAttractions = new ArrayList<>(PERMANENT_VISITED_PLACES);
-        return permanentAttractions;
     }
 
     /**

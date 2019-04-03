@@ -3,7 +3,6 @@ package nl.saxion.touristattractiontagger.NormalLoginActivities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -11,7 +10,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import nl.saxion.touristattractiontagger.Adapters.CityDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
@@ -33,6 +31,7 @@ public class CitySelectScreen extends AppCompatActivity {
         cities = DataProvider.CITIES;
         this.nameInput = findViewById(R.id.etNameInput);
         this.nameInput.setText("");
+        final String userName = nameInput.getText().toString();
 
         //Instantiating the list view with adapter.
         CityDisplayAdapter adapter = new CityDisplayAdapter(this, cities);
@@ -49,7 +48,8 @@ public class CitySelectScreen extends AppCompatActivity {
                 else{
                     Intent switchScreen = new Intent(CitySelectScreen.this, AttractionSelectScreen.class);
                     selectedCity = cities.get(position).getName();
-                    switchScreen.putExtra(NAME_KEY, nameInput.getText().toString());
+                    DataProvider.addUser(userName, "", cities.get(position));
+                    switchScreen.putExtra(NAME_KEY, userName);
                     switchScreen.putExtra(CITY_KEY, selectedCity);
                     startActivity(switchScreen);
                 }
