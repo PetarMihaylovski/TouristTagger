@@ -25,7 +25,7 @@ import nl.saxion.touristattractiontagger.Users.User;
 public class AttractionSelectScreen extends AppCompatActivity {
     private ListView listView;
     private City city; //the city
-    private BasicUser user;
+    private BasicUser user; //the user
     private ArrayList<TouristAttraction> allAttractions;
     public static final String NAME_KEY = "randomKeyGen";
     public static final String CITY_KEY = "cityKeyGenerated";

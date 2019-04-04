@@ -1,6 +1,7 @@
 package nl.saxion.touristattractiontagger.DataProvider;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
@@ -15,14 +16,12 @@ import nl.saxion.touristattractiontagger.Users.User;
 public class DataProvider {
     public static ArrayList<User> USERS;
     public static ArrayList<City> CITIES;
-    public static ArrayList<TouristAttraction> TEMP_VISITED_PLACES; //TODO: rename with a better name
-    public static ArrayList<TouristAttraction> PERMANENT_VISITED_PLACES; //TODO: rename with a better name
+    public static HashMap<User, ArrayList<TouristAttraction>> DISPLAY_DATA; //TODO: rename with a better name
 
     static {
         USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
-        TEMP_VISITED_PLACES = new ArrayList<>();
-        PERMANENT_VISITED_PLACES = new ArrayList<>();
+        DISPLAY_DATA = new HashMap<>();
 
         City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
@@ -81,15 +80,6 @@ public class DataProvider {
             }
         }
         return null;
-    }
-
-    //TODO: check if the TA is already in the list.
-    public static void addVisitedTouristAttraction(TouristAttraction visited) {
-        TEMP_VISITED_PLACES.add(visited);
-    }
-
-    public static void removeTouristAttraction(TouristAttraction touristAttraction) {
-        TEMP_VISITED_PLACES.remove(touristAttraction);
     }
 
     /**

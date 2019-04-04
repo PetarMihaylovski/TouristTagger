@@ -24,7 +24,6 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_friends_location_screen);
 
-        DataProvider.dataTransfer(DataProvider.TEMP_VISITED_PLACES, DataProvider.PERMANENT_VISITED_PLACES);
         ScrollView test = findViewById(R.id.svScroll);
         TextView tvDisplay = test.findViewById(R.id.tvDisplay);
 
@@ -35,20 +34,9 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
         String cityString = prevScreen.getStringExtra(OptionsScreen.CITY_STR_KEY);
         city = DataProvider.getCityByName(cityString);
 
-        displayData(tvDisplay);
         goToLoginScreenOnClickListener();
     }
 
-    private void displayData(TextView tvDisplay) {
-        //TODO: Implement a HashMap with key: User and values: ArrayList<TA>, here loop
-        //TODO: through all the users and print their data.
-
-        tvDisplay.setText(String.format("%s has been in %s\n", user, city));
-//        TODO: make the data look nice!
-        for (TouristAttraction ta : DataProvider.PERMANENT_VISITED_PLACES) {
-            tvDisplay.setText(String.format("%s %s\n\t", tvDisplay.getText().toString(), ta));
-        }
-    }
 
     private void goToLoginScreenOnClickListener() {
         Button btnGotoLoginScreen = findViewById(R.id.btnGoToLoginScreen);
