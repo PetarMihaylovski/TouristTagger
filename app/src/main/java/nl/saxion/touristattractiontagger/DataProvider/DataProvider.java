@@ -14,14 +14,12 @@ import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
-    public static ArrayList<User> USERS;
+    public static ArrayList<BasicUser> USERS;
     public static ArrayList<City> CITIES;
-    public static HashMap<User, ArrayList<TouristAttraction>> DISPLAY_DATA; //TODO: rename with a better name
 
     static {
         USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
-        DISPLAY_DATA = new HashMap<>();
 
         City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
@@ -63,14 +61,9 @@ public class DataProvider {
         return null;
     }
 
-    public static void addUser(String name, String password, City city){
-        if (password.equals("")){
-            USERS.add(new BasicUser(name, city));
-        }
-        else {
-            USERS.add(new Administrator(name,password));
-        }
-
+    //TODO: make the necessary checks
+    public static void addUser(String name, City city){
+        USERS.add(new BasicUser(name, city));
     }
 
     public static User getUserByName(String name){

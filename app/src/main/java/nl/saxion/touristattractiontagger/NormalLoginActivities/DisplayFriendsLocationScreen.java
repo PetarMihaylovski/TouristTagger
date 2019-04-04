@@ -14,10 +14,10 @@ import nl.saxion.touristattractiontagger.LoginScreen;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
+import nl.saxion.touristattractiontagger.Users.User;
 
 public class DisplayFriendsLocationScreen extends AppCompatActivity {
     private BasicUser user;
-    private City city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,18 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
         String userAsString = prevScreen.getStringExtra(OptionsScreen.USERNAME_KEY);
         this.user = (BasicUser) DataProvider.getUserByName(userAsString);
         String cityString = prevScreen.getStringExtra(OptionsScreen.CITY_STR_KEY);
-        city = DataProvider.getCityByName(cityString);
 
+        displayData(tvDisplay);
         goToLoginScreenOnClickListener();
+    }
+
+    private void displayData(TextView tvDisplay){
+        tvDisplay.setText(String.format("%s was in %s\n", user, user.getCity()));
+        for (BasicUser user: DataProvider.USERS) {
+            for (TouristAttraction ta : user.getVisitedVenues()) {
+                tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), ta));
+            }
+        }
     }
 
 

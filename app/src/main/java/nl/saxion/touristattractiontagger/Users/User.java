@@ -1,6 +1,5 @@
 package nl.saxion.touristattractiontagger.Users;
 
-
 public abstract class User {
     private String name;
 

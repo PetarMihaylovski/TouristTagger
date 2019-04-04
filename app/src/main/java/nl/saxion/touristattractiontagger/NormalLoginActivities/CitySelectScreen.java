@@ -49,7 +49,7 @@ public class CitySelectScreen extends AppCompatActivity {
                     String userName = nameInput.getText().toString();
                     selectedCity = cities.get(position).getName();
                     //creating a new user instance.
-                    DataProvider.addUser(userName, "", cities.get(position));
+                    DataProvider.addUser(userName, cities.get(position));
 
                     Intent switchScreen = new Intent(CitySelectScreen.this, AttractionSelectScreen.class);
                     switchScreen.putExtra(NAME_KEY, userName);

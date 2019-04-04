@@ -12,17 +12,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import nl.saxion.touristattractiontagger.CompoundControls.AttractionDisplayCompound;
-import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
+import nl.saxion.touristattractiontagger.Users.BasicUser;
+import nl.saxion.touristattractiontagger.Users.User;
 
 public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     private CheckBox cbAdd;
     private ArrayList<TouristAttraction> attractions;
+    private BasicUser user;
 
-    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects) {
+    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects, BasicUser user) {
         super(context, R.layout.activity_attraction_select_screen, objects);
         this.attractions = objects;
+        this.user = user;
     }
 
     @Override
@@ -77,16 +80,15 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     currTouristAttraction.setChecked(true);
-
-                    if (!DataProvider.TEMP_VISITED_PLACES.contains(currTouristAttraction)){
-                        DataProvider.addVisitedTouristAttraction(currTouristAttraction);
+                    if (!user.getVisitedVenues().contains(currTouristAttraction)){
+                        user.addVisitedVenue(currTouristAttraction);
                     }
-                    Log.d("testHELP", "" + DataProvider.TEMP_VISITED_PLACES);
+                    Log.d("mafaka", "" + user.getVisitedVenues());
                 }
                 else {
                     currTouristAttraction.setChecked(false);
-                    DataProvider.removeTouristAttraction(currTouristAttraction);
-                    Log.d("testHELP", "" + DataProvider.TEMP_VISITED_PLACES);
+                    user.removeVisitedVenue(currTouristAttraction);
+                    Log.d("mafaka", "" + user.getVisitedVenues());
                 }
             }
         });

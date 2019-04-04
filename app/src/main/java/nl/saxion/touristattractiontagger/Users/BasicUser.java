@@ -1,20 +1,40 @@
 package nl.saxion.touristattractiontagger.Users;
 
+import java.util.ArrayList;
+
 import nl.saxion.touristattractiontagger.City;
+import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
 public class BasicUser extends User{
-    private City visitedCity;
+    private ArrayList<TouristAttraction> visitedVenues;
+    private City city;
 
-    public BasicUser(String name,City city){
+    public BasicUser(String name, City city){
         super(name);
-        this.visitedCity = city;
+        this.city = city;
+        this.visitedVenues = new ArrayList<>();
     }
 
-    public City getVisitedCity() {
-        return visitedCity;
+    //TODO: check if the venue is more than once
+    public void addVisitedVenue(TouristAttraction attraction){
+        this.visitedVenues.add(attraction);
     }
 
-    public void setVisitedCity(City visitedCity) {
-        this.visitedCity = visitedCity;
+    public ArrayList<TouristAttraction> getVisitedVenues() {
+        ArrayList<TouristAttraction> visitedVenuesCopy = new ArrayList<>(visitedVenues);
+        return visitedVenuesCopy;
+    }
+
+    //TODO: do the necessary checks
+    public void removeVisitedVenue(TouristAttraction attraction){
+        this.visitedVenues.remove(attraction);
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }
