@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.LoginScreen;
@@ -26,27 +28,37 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
 
         ScrollView test = findViewById(R.id.svScroll);
         TextView tvDisplay = test.findViewById(R.id.tvDisplay);
+        tvDisplay.setText("");
 
         //getting the data from the previous screen.
         Intent prevScreen = getIntent();
         String userAsString = prevScreen.getStringExtra(OptionsScreen.USERNAME_KEY);
         this.user = (BasicUser) DataProvider.getUserByName(userAsString);
-        String cityString = prevScreen.getStringExtra(OptionsScreen.CITY_STR_KEY);
 
         displayData(tvDisplay);
         goToLoginScreenOnClickListener();
     }
 
-    private void displayData(TextView tvDisplay){
-        tvDisplay.setText(String.format("%s was in %s\n", user, user.getCity()));
-        for (BasicUser user: DataProvider.USERS) {
-            for (TouristAttraction ta : user.getVisitedVenues()) {
-                tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), ta));
+    private void displayData(TextView tvDisplay) {
+        String data = String.format("%s was in %s\n", this.user, this.user.getCity());
+
+        if (DataProvider.DATA_DISPLAY.size() != 0) {
+            for (String str : DataProvider.DATA_DISPLAY){
+                tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), str));
             }
         }
+
+        tvDisplay.setText(String.format("%s %s was in %s\n", tvDisplay.getText(), this.user, this.user.getCity()));
+        for (BasicUser user : DataProvider.USERS) {
+            for (TouristAttraction ta : user.getVisitedVenues()) {
+                tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), ta));
+                data += String.format("%s", ta);
+            }
+        }
+       DataProvider.addData(data);
     }
 
-
+    //TODO: find way to reset the checkboxes;
     private void goToLoginScreenOnClickListener() {
         Button btnGotoLoginScreen = findViewById(R.id.btnGoToLoginScreen);
         btnGotoLoginScreen.setOnClickListener(new View.OnClickListener() {

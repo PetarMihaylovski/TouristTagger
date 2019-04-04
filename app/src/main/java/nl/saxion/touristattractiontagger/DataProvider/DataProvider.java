@@ -1,7 +1,6 @@
 package nl.saxion.touristattractiontagger.DataProvider;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
@@ -9,17 +8,18 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
-import nl.saxion.touristattractiontagger.Users.Administrator;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
     public static ArrayList<BasicUser> USERS;
     public static ArrayList<City> CITIES;
+    public static ArrayList<String> DATA_DISPLAY;
 
     static {
         USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
+        DATA_DISPLAY = new ArrayList<>();
 
         City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
@@ -59,6 +59,11 @@ public class DataProvider {
             }
         }
         return null;
+    }
+
+    //TODO: make necessary checks
+    public static void addData(String data){
+        DATA_DISPLAY.add(data);
     }
 
     //TODO: make the necessary checks
