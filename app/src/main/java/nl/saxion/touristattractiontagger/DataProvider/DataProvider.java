@@ -7,7 +7,6 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
-import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
@@ -78,16 +77,5 @@ public class DataProvider {
             }
         }
         return null;
-    }
-
-    /**
-     * Transfer data between two arrayLists
-     *
-     * @param from the arrayList to be deleted
-     * @param to   the arrayList to be overwritten
-     */
-    public static void dataTransfer(ArrayList<TouristAttraction> from, ArrayList<TouristAttraction> to) {
-        to.addAll(from);
-        from.clear();
     }
 }

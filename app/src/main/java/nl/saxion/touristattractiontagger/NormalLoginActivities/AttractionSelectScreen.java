@@ -82,7 +82,6 @@ public class AttractionSelectScreen extends AppCompatActivity {
         addPlacesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: switch intents with the right information.
                 Intent switchScreen = new Intent(AttractionSelectScreen.this, OptionsScreen.class);
                 switchScreen.putExtra(NAME_KEY, user.toString());
                 switchScreen.putExtra(CITY_KEY, city.getName());
