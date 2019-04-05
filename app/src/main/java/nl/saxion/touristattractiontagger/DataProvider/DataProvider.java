@@ -7,6 +7,7 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
+import nl.saxion.touristattractiontagger.Users.Administrator;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
@@ -14,6 +15,7 @@ public class DataProvider {
     public static ArrayList<BasicUser> USERS;
     public static ArrayList<City> CITIES;
     public static ArrayList<String> DATA_DISPLAY;
+    public static Administrator ADMIN;
 
     static {
         USERS = new ArrayList<>();
@@ -43,6 +45,8 @@ public class DataProvider {
         amsterdam.addAttraction(new Museum("Rijksmuseum", "Museumstraat 1", "Johannes Vermeer"));
         amsterdam.addAttraction(new Museum("Anne Frank House", "Prinsengracht 263-267", "The Secret Annex"));
         amsterdam.addAttraction(new Museum("Van Gogh Museum", "Museumplein 6", "Van Gogh Inspires"));
+
+        ADMIN = new Administrator("admin", "admin");
     }
 
     //TODO: When needed make it public.
