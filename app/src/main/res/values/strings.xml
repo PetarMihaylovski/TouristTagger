@@ -12,4 +12,6 @@
     <string name="show_friends_places">Show friends\' places</string>
     <string name="edit_my_place">Edit my places</string>
     <string name="goToLoginScreen">Go to login screen</string>
+    <string name="logged_in_as_an_administrator">Logged in as an administrator</string>
+    <string name="addCityText">Add a new city</string>
 </resources>

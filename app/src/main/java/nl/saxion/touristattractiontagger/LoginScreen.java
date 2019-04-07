@@ -35,6 +35,7 @@ public class LoginScreen extends AppCompatActivity {
         normalLoginOnClickListener();
         adminLoginListener();
 
+        //TODO: make the HELP button!
     }
 
     private void adminLoginListener(){
