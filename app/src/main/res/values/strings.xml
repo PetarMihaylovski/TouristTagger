@@ -14,4 +14,5 @@
     <string name="goToLoginScreen">Go to login screen</string>
     <string name="logged_in_as_an_administrator">Logged in as an administrator</string>
     <string name="addCityText">Add a new city</string>
+    <string name="notification">Logged in as an administrator.</string>
 </resources>
