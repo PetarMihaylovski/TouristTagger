@@ -15,4 +15,9 @@
     <string name="logged_in_as_an_administrator">Logged in as an administrator</string>
     <string name="addCityText">Add a new city</string>
     <string name="notification">Logged in as an administrator.</string>
+    <string name="addCity">Add City</string>
+    <string name="pictureName">Enter the name of the picture</string>
+    <string name="countryName">Enter the country name:</string>
+    <string name="cityName">Enter the city name:</string>
+    <string name="sameCityException">Cannot add the same city twice!</string>
 </resources>

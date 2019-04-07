@@ -3,6 +3,7 @@ package nl.saxion.touristattractiontagger.DataProvider;
 import java.util.ArrayList;
 
 import nl.saxion.touristattractiontagger.City;
+import nl.saxion.touristattractiontagger.Exceptions.SameCityException;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
@@ -27,10 +28,16 @@ public class DataProvider {
         City sofia = new City("Sofia", "Bulgaria", "sofia_picture.jpg");
         City plovdiv = new City("Plovdiv", "Bulgaria", "plovdiv_picture.jpeg");
 
-        addCity(amsterdam);
-        addCity(deventer);
-        addCity(sofia);
-        addCity(plovdiv);
+        try {
+            //mass-added since they are the starting cities and cannot have duplicates.
+            addCity(amsterdam);
+            addCity(deventer);
+            addCity(sofia);
+            addCity(plovdiv);
+        }
+        catch (SameCityException sce) {
+            sce.printStackTrace();
+        }
 
         //TODO: add tourist attractions in the city here.
         amsterdam.addAttraction(new Bar("Door 74", "Reguliersdwarsstraat 74", "Bloody Marry"));
@@ -49,9 +56,19 @@ public class DataProvider {
         ADMIN = new Administrator("admin", "admin");
     }
 
-    //TODO: When needed make it public.
-    //TODO: Check if the city already exist in the list.
-    private static void addCity(City city) {
+    /**
+     * Adds a new city to the already existing list.
+     * Does not allow same city additions.
+     * @param city the city as an object
+     * @throws SameCityException when the user tries to add the same city twice.
+     */
+    public static void addCity(City city) throws SameCityException {
+       for (City c : CITIES) {
+            if (c.getName().equals(city.getName()) && c.getCountry().equals(city.getCountry())){
+                throw new SameCityException();
+            }
+        }
+
         CITIES.add(city);
     }
 

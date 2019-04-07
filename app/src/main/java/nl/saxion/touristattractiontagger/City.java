@@ -35,6 +35,10 @@ public class City {
         return name;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
     @Override
     public String toString() {
         return name + ", " + country;
