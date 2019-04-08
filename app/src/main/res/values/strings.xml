@@ -20,4 +20,7 @@
     <string name="countryName">Enter the country name:</string>
     <string name="cityName">Enter the city name:</string>
     <string name="sameCityException">Cannot add the same city twice!</string>
+    <string name="removeCity">Remove a city</string>
+    <string name="rmCityName">Enter the name of the city</string>
+    <string name="removeButtonText">Remove the city</string>
 </resources>

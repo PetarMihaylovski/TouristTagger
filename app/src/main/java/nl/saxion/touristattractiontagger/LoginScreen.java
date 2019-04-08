@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import nl.saxion.touristattractiontagger.AdminLogin.CityEdit;
+import nl.saxion.touristattractiontagger.AdminLogin.EditCity;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.NormalLoginActivities.CitySelectScreen;
 import nl.saxion.touristattractiontagger.Users.Administrator;
@@ -51,7 +51,7 @@ public class LoginScreen extends AppCompatActivity {
                 String passwordInput = etAdminPassword.getText().toString();
 
                 if (usernameInput.equals(admin.getName()) && passwordInput.equals(admin.getPassword())){
-                    Intent switchScreen = new Intent(LoginScreen.this, CityEdit.class);
+                    Intent switchScreen = new Intent(LoginScreen.this, EditCity.class);
                     startActivity(switchScreen);
                 }
                 else {

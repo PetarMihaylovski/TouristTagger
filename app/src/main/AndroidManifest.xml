@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminLogin.AddCity"></activity>
-        <activity android:name=".AdminLogin.CityEdit" />
+        <activity android:name=".AdminLogin.RemoveCity"></activity>
+        <activity android:name=".AdminLogin.AddCity" />
+        <activity android:name=".AdminLogin.EditCity" />
         <activity android:name=".NormalLoginActivities.DisplayFriendsLocationScreen" />
         <activity android:name=".NormalLoginActivities.OptionsScreen" />
         <activity android:name=".NormalLoginActivities.AttractionSelectScreen" />
