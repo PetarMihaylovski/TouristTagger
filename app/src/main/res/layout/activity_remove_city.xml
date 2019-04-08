@@ -7,7 +7,7 @@
     tools:context=".AdminLogin.RemoveCity">
 
     <EditText
-        android:id="@+id/etCityName"
+        android:id="@+id/etCityToBeDeleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,14 +17,14 @@
         android:ems="10"
         android:hint="@string/rmCityName"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnRemoveCity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRemoveCity"
         android:layout_width="wrap_content"
         android:layout_height="52dp"
         android:layout_marginStart="16dp"
@@ -35,5 +35,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCityName" />
+        app:layout_constraintTop_toBottomOf="@+id/etCityToBeDeleted" />
 </android.support.constraint.ConstraintLayout>

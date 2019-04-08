@@ -27,7 +27,7 @@ public class AddCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_city);
 
-        this.etCityName = findViewById(R.id.etCityName);
+        this.etCityName = findViewById(R.id.etCityToBeDeleted);
         this.etCountryName = findViewById(R.id.etCountryName);
         this.etPictureName= findViewById(R.id.etPictureName);
         this.btnAdd = findViewById(R.id.btnAddCity);

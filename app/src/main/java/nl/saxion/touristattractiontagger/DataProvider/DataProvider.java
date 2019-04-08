@@ -59,12 +59,13 @@ public class DataProvider {
     /**
      * Adds a new city to the already existing list.
      * Does not allow same city additions.
+     *
      * @param city the city as an object
      * @throws SameCityException when the user tries to add the same city twice.
      */
     public static void addCity(City city) throws SameCityException {
-       for (City c : CITIES) {
-            if (c.getName().equals(city.getName()) && c.getCountry().equals(city.getCountry())){
+        for (City c : CITIES) {
+            if (c.getName().equals(city.getName()) && c.getCountry().equals(city.getCountry())) {
                 throw new SameCityException();
             }
         }
@@ -82,21 +83,37 @@ public class DataProvider {
     }
 
     //TODO: make necessary checks
-    public static void addData(String data){
+    public static void addData(String data) {
         DATA_DISPLAY.add(data);
     }
 
     //TODO: make the necessary checks
-    public static void addUser(String name, City city){
+    public static void addUser(String name, City city) {
         USERS.add(new BasicUser(name, city));
     }
 
-    public static User getUserByName(String name){
-        for (User user : USERS){
-            if (user.getName().equals(name)){
+    public static User getUserByName(String name) {
+        for (User user : USERS) {
+            if (user.getName().equals(name)) {
                 return user;
             }
         }
         return null;
+    }
+
+    /**
+     * Finds a city by name and removes it
+     *
+     * @param name the name of the city, the user wants to delete
+     * @return if the removal is successful or not.
+     */
+    public static boolean removeCityByName(String name) {
+        for (City city : CITIES) {
+            if (city.getName().toLowerCase().equals(name.toLowerCase())) {
+                CITIES.remove(city);
+                return true;
+            }
+        }
+        return false;
     }
 }
