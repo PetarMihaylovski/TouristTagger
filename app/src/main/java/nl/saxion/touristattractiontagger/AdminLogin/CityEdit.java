@@ -49,7 +49,6 @@ public class CityEdit extends AppCompatActivity {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
             String cityName = data.getStringExtra(AddCity.CITY_NAME_KEY);
             this.cityNew = DataProvider.getCityByName(cityName);
-            adapter.add(this.cityNew);
             adapter.notifyDataSetChanged();
         }
     }

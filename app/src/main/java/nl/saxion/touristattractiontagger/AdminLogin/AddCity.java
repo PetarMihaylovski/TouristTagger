@@ -31,6 +31,10 @@ public class AddCity extends AppCompatActivity {
         this.etCountryName = findViewById(R.id.etCountryName);
         this.etPictureName= findViewById(R.id.etPictureName);
         this.btnAdd = findViewById(R.id.btnAddCity);
+
+        this.etCityName.setText("");
+        this.etCountryName.setText("");
+        this.etPictureName.setText("");
         this.cityName = this.etCityName.getText().toString();
 
         addCityOnClickListener();
@@ -44,12 +48,17 @@ public class AddCity extends AppCompatActivity {
                 String countryName = etCountryName.getText().toString();
                 String pictureID = etPictureName.getText().toString();
 
-                try {
-                    DataProvider.addCity(new City(cityName, countryName, pictureID));
-                    Toast.makeText(AddCity.this, "City added successfully. Press the back button to exit.", Toast.LENGTH_LONG).show();
+                if (cityName.equals("") || countryName.equals("") || pictureID.equals("")){
+                    Toast.makeText(AddCity.this, "Invalid information! City cannot be added.", Toast.LENGTH_SHORT).show();
                 }
-                catch (SameCityException sce) {
-                    Toast.makeText(AddCity.this, "" + sce, Toast.LENGTH_SHORT).show();
+                else {
+                    try {
+                        DataProvider.addCity(new City(cityName, countryName, pictureID));
+                        Toast.makeText(AddCity.this, "City added successfully. Press the back button to exit.", Toast.LENGTH_LONG).show();
+                    }
+                    catch (SameCityException sce) {
+                        Toast.makeText(AddCity.this, "" + sce, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
