@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminLogin.RemoveCity"></activity>
+        <activity android:name=".AdminLogin.TouristAttractionDetails"></activity>
+        <activity android:name=".AdminLogin.RemoveCity" />
         <activity android:name=".AdminLogin.AddCity" />
         <activity android:name=".AdminLogin.EditCity" />
         <activity android:name=".NormalLoginActivities.DisplayFriendsLocationScreen" />

@@ -13,7 +13,7 @@ import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
-    public static ArrayList<BasicUser> USERS;
+    private static ArrayList<BasicUser> USERS;
     public static ArrayList<City> CITIES;
     public static ArrayList<String> DATA_DISPLAY;
     public static Administrator ADMIN;
