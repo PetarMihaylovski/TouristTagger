@@ -38,10 +38,9 @@ public class AttractionSelectScreen extends AppCompatActivity {
 
         TextView tvNameAndLocation = findViewById(R.id.tvNameAndLocation);
 
-        String usernameAsString;
         //Get the username and the chosen city from the previous screen.
         Intent intent = getIntent();
-        usernameAsString = intent.getStringExtra(CitySelectScreen.NAME_KEY);
+        String usernameAsString = intent.getStringExtra(CitySelectScreen.NAME_KEY);
         this.user = (BasicUser) DataProvider.getUserByName(usernameAsString);
         String cityName = intent.getStringExtra(CitySelectScreen.CITY_KEY);
         this.city = DataProvider.getCityByName(cityName);

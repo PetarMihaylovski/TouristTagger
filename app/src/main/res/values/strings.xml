@@ -23,4 +23,6 @@
     <string name="removeCity">Remove a city</string>
     <string name="rmCityName">Enter the name of the city</string>
     <string name="removeButtonText">Remove the city</string>
+    <string name="addVenue">Add new venue</string>
+    <string name="removeVenue">Remove a venue</string>
 </resources>
