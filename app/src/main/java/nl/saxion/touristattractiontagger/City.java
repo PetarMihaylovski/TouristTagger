@@ -21,6 +21,26 @@ public class City {
         this.attractions.add(attraction);
     }
 
+    //TODO: make the necessary checks
+    public boolean removeAttraction(String name){
+        for (TouristAttraction ta : this.attractions) {
+            if (ta.getName().toLowerCase().equals(name.toLowerCase())){
+                this.attractions.remove(ta);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public TouristAttraction findAttrByName(String name){
+        for (TouristAttraction ta : this.attractions) {
+            if (ta.getName().toLowerCase().equals(name.toLowerCase())){
+                return ta;
+            }
+        }
+        return null;
+    }
+
     //return copy of the real arrayList.
     public ArrayList<TouristAttraction> getAttractions(){
         ArrayList<TouristAttraction> attractions = this.attractions;
