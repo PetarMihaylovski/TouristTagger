@@ -82,20 +82,23 @@ public class TouristAttractionDetails extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String attractionName = input.getText().toString();
-                        if (city.removeAttraction(attractionName)) {
-                            TouristAttraction attraction = city.findAttrByName(attractionName);
-                            adapter.remove(attraction);
-                            Toast.makeText(TouristAttractionDetails.this, "Tourist attraction removed successfully", Toast.LENGTH_SHORT).show();
+                        if (!attractionName.equals("")) {
+                            if (city.removeAttraction(attractionName)) {
+                                TouristAttraction attraction = city.findAttrByName(attractionName);
+                                adapter.remove(attraction);
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(TouristAttractionDetails.this, "Tourist attraction removed successfully", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(TouristAttractionDetails.this, "Tourist attraction does not exist!", Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else {
-                            Toast.makeText(TouristAttractionDetails.this, "Tourist attraction does not exist!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TouristAttractionDetails.this, "Invalid tourist attraction name!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
-
                 alertDialog.show();
-                adapter.notifyDataSetChanged();
             }
         });
     }

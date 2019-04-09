@@ -2,8 +2,6 @@ package nl.saxion.touristattractiontagger.AdminLogin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,15 +16,12 @@ import android.widget.Toast;
 import nl.saxion.touristattractiontagger.Adapters.CityDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
-import nl.saxion.touristattractiontagger.NormalLoginActivities.AttractionSelectScreen;
-import nl.saxion.touristattractiontagger.NormalLoginActivities.CitySelectScreen;
 import nl.saxion.touristattractiontagger.R;
 
 public class EditCity extends AppCompatActivity {
     private Button btnAddCity;
     private Button btnRemoveCity;
     public static final int ADD_REQUEST_CODE = 123;
-    public static final int REMOVE_REQUEST_CODE = 125;
     private CityDisplayAdapter adapter;
     private ListView lvCities;
     public static final String CITY_TRANSFER_KEY = "transKey";
@@ -85,7 +80,6 @@ public class EditCity extends AppCompatActivity {
 
                         if (!cityName.equals("")){
                             if (DataProvider.removeCityByName(cityName)){
-                                //TODO: the next line might cause an error.
                                 adapter.remove(DataProvider.getCityByName(cityName));
                                 adapter.notifyDataSetChanged();
                                 Toast.makeText(EditCity.this, "City removed successfully.", Toast.LENGTH_LONG).show();
@@ -123,7 +117,7 @@ public class EditCity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_REQUEST_CODE && resultCode == RESULT_OK) {
