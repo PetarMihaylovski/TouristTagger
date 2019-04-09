@@ -3,10 +3,13 @@ package nl.saxion.touristattractiontagger.AdminLogin;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import nl.saxion.touristattractiontagger.Adapters.AttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.NormalLoginActivities.AttractionSelectScreen;
@@ -27,6 +30,11 @@ public class TouristAttractionDetails extends AppCompatActivity {
         this.city = DataProvider.getCityByName(cityName);
         ArrayList<TouristAttraction> touristAttractions = city.getAttractions();
 
+        TextView tvChosenCity = findViewById(R.id.tvChosenCity);
+        tvChosenCity.setText(city.toString());
 
+        AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, touristAttractions);
+        ListView lvAttractionsDisplay = findViewById(R.id.lvTouristAttrAdminDisplay);
+        lvAttractionsDisplay.setAdapter(adapter);
     }
 }

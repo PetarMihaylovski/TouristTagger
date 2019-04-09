@@ -15,7 +15,6 @@ import nl.saxion.touristattractiontagger.CompoundControls.AttractionDisplayCompo
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
-import nl.saxion.touristattractiontagger.Users.User;
 
 public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     private CheckBox cbAdd;
@@ -26,6 +25,11 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         super(context, R.layout.activity_attraction_select_screen, objects);
         this.attractions = objects;
         this.user = user;
+    }
+
+    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects) {
+        super(context, R.layout.activity_attraction_select_screen, objects);
+        this.attractions = objects;
     }
 
     @Override

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/tvAdminNameDisplay"
@@ -17,7 +16,7 @@
         android:textAlignment="viewStart"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvTypeAdmin"
-        app:layout_constraintEnd_toStartOf="@+id/cbAdd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +34,7 @@
         android:textSize="16sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/tvSpecialAttribute"
-        app:layout_constraintEnd_toStartOf="@+id/cbAdd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAdminNameDisplay" />
 
@@ -55,21 +54,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTypeAdmin" />
-
-    <CheckBox
-        android:id="@+id/cbAdd"
-        android:layout_width="63dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:focusable="false"
-        android:text="@string/add"
-        app:layout_constraintBottom_toTopOf="@+id/tvSpecialAttribute"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvTypeAdmin"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

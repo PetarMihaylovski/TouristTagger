@@ -39,8 +39,8 @@ public class AttractionDisplayCompound extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.custom_attraction_display, this);
 
-        this.tvName = findViewById(R.id.tvName);
-        this.tvType = findViewById(R.id.tvType);
+        this.tvName = findViewById(R.id.tvAdminNameDisplay);
+        this.tvType = findViewById(R.id.tvTypeAdmin);
         this.tvSpecialAttribute= findViewById(R.id.tvSpecialAttribute);
         this.cbAddVisitedPlaces= findViewById(R.id.cbAdd);
     }
