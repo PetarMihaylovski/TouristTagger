@@ -71,6 +71,13 @@ public class TouristAttractionDetails extends AppCompatActivity {
                 input.setLayoutParams(params);
                 alertDialog.setView(input);
 
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
                 alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -86,12 +93,6 @@ public class TouristAttractionDetails extends AppCompatActivity {
                     }
                 });
 
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
 
                 alertDialog.show();
                 adapter.notifyDataSetChanged();

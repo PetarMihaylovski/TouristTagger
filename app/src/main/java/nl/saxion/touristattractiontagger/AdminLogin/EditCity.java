@@ -1,15 +1,19 @@
 package nl.saxion.touristattractiontagger.AdminLogin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import nl.saxion.touristattractiontagger.Adapters.CityDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
@@ -63,8 +67,47 @@ public class EditCity extends AppCompatActivity {
         this.btnRemoveCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchScreen = new Intent(EditCity.this, RemoveCity.class);
-                startActivityForResult(switchScreen, REMOVE_REQUEST_CODE);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(EditCity.this);
+                alertDialog.setTitle("Remove city");
+                alertDialog.setMessage("Enter the name of the city");
+
+                final EditText input = new EditText(EditCity.this);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(params);
+                alertDialog.setView(input);
+
+                alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String cityName = input.getText().toString();
+
+                        if (!cityName.equals("")){
+                            if (DataProvider.removeCityByName(cityName)){
+                                //TODO: the next line might cause an error.
+                                adapter.remove(DataProvider.getCityByName(cityName));
+                                adapter.notifyDataSetChanged();
+                                Toast.makeText(EditCity.this, "City removed successfully.", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                Toast.makeText(EditCity.this, "This city does not exist", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else {
+                            Toast.makeText(EditCity.this, "Invalid city name!", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.show();
             }
         });
     }
@@ -84,12 +127,6 @@ public class EditCity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_REQUEST_CODE && resultCode == RESULT_OK) {
-            adapter.notifyDataSetChanged();
-        }
-        else if (requestCode == REMOVE_REQUEST_CODE && resultCode == RESULT_OK) {
-            String cityName = data.getStringExtra(RemoveCity.CITY_NAME_KEY);
-            City city = DataProvider.getCityByName(cityName);
-            adapter.remove(city);
             adapter.notifyDataSetChanged();
         }
     }
