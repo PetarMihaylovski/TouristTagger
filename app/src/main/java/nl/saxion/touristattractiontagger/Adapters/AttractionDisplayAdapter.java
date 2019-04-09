@@ -27,11 +27,6 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         this.user = user;
     }
 
-    public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects) {
-        super(context, R.layout.activity_attraction_select_screen, objects);
-        this.attractions = objects;
-    }
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         AttractionDisplayCompound adCompound = new AttractionDisplayCompound(getContext());

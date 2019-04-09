@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import nl.saxion.touristattractiontagger.Adapters.AdminAttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.Adapters.AttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
@@ -33,7 +34,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
         TextView tvChosenCity = findViewById(R.id.tvChosenCity);
         tvChosenCity.setText(city.toString());
 
-        AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, touristAttractions);
+        AdminAttractionDisplayAdapter adapter = new AdminAttractionDisplayAdapter(this, this.city.getAttractions());
         ListView lvAttractionsDisplay = findViewById(R.id.lvTouristAttrAdminDisplay);
         lvAttractionsDisplay.setAdapter(adapter);
     }
