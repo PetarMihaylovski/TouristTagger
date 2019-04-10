@@ -15,13 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import nl.saxion.touristattractiontagger.Adapters.AdminAttractionDisplayAdapter;
-import nl.saxion.touristattractiontagger.Adapters.AttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
-import nl.saxion.touristattractiontagger.NormalLoginActivities.AttractionSelectScreen;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
@@ -31,6 +28,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
     private Button btnAddAttraction;
     private Button btnRemoveAttraction;
     private AdminAttractionDisplayAdapter adapter;
+    public static final int NEW_CITY = 1457;
 
 
     @Override
@@ -50,8 +48,10 @@ public class TouristAttractionDetails extends AppCompatActivity {
         ListView lvAttractionsDisplay = findViewById(R.id.lvTouristAttrAdminDisplay);
         lvAttractionsDisplay.setAdapter(adapter);
 
+        this.btnAddAttraction = findViewById(R.id.btnAddTouristAttr);
         this.btnRemoveAttraction = findViewById(R.id.btnRemoveTouristAttr);
 
+        addNewAttractionOnClickListener();
         removeAttractionOnClickButton();
     }
 
@@ -99,6 +99,16 @@ public class TouristAttractionDetails extends AppCompatActivity {
                     }
                 });
                 alertDialog.show();
+            }
+        });
+    }
+
+    private void addNewAttractionOnClickListener(){
+        this.btnAddAttraction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchScreens = new Intent(TouristAttractionDetails.this, MakeNewTouristAttraction.class);
+                startActivityForResult(switchScreens, NEW_CITY);
             }
         });
     }

@@ -110,7 +110,7 @@ public class EditCity extends AppCompatActivity {
         this.btnAddCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchScreen = new Intent(EditCity.this, AddCity.class);
+                Intent switchScreen = new Intent(EditCity.this, MakeNewCity.class);
                 startActivityForResult(switchScreen, ADD_REQUEST_CODE);
             }
         });

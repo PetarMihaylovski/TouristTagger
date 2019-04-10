@@ -13,7 +13,7 @@ import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.Exceptions.SameCityException;
 import nl.saxion.touristattractiontagger.R;
 
-public class AddCity extends AppCompatActivity {
+public class MakeNewCity extends AppCompatActivity {
 
     private EditText etCityName;
     private EditText etCountryName;
@@ -49,15 +49,15 @@ public class AddCity extends AppCompatActivity {
                 String pictureID = etPictureName.getText().toString();
 
                 if (cityName.equals("") || countryName.equals("") || pictureID.equals("")){
-                    Toast.makeText(AddCity.this, "Invalid information! City cannot be added.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MakeNewCity.this, "Invalid information! City cannot be added.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try {
                         DataProvider.addCity(new City(cityName, countryName, pictureID));
-                        Toast.makeText(AddCity.this, "City added successfully. Press the back button to exit.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MakeNewCity.this, "City added successfully. Press the back button to exit.", Toast.LENGTH_LONG).show();
                     }
                     catch (SameCityException sce) {
-                        Toast.makeText(AddCity.this, "" + sce, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MakeNewCity.this, "" + sce, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
