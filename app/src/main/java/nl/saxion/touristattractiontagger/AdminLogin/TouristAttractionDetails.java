@@ -29,6 +29,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
     private Button btnRemoveAttraction;
     private AdminAttractionDisplayAdapter adapter;
     public static final int NEW_CITY = 1457;
+    public static final String CITY_NAME_KEY = "hiddenKey";
 
 
     @Override
@@ -108,6 +109,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent switchScreens = new Intent(TouristAttractionDetails.this, MakeNewTouristAttraction.class);
+                switchScreens.putExtra(CITY_NAME_KEY, city.getName());
                 startActivityForResult(switchScreens, NEW_CITY);
             }
         });

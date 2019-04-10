@@ -25,4 +25,6 @@
     <string name="removeButtonText">Remove the city</string>
     <string name="addVenue">Add new venue</string>
     <string name="removeVenue">Remove a venue</string>
+    <string name="addAttraction">Add tourist attraction</string>
+    <string name="typesOfAttractions">Bar/Restaurant/Museum/Theater</string>
 </resources>
