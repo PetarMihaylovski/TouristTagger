@@ -34,12 +34,6 @@ public class LoginScreen extends AppCompatActivity {
 
         normalLoginOnClickListener();
         adminLoginListener();
-
-        //TODO: remove later, debug purposes.
-        etAdminPassword.setText("admin");
-        etAdminUsername.setText("admin");
-
-        //TODO: make the HELP button!
     }
 
     private void adminLoginListener(){
@@ -74,4 +68,7 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
     }
+
+    p
+
 }

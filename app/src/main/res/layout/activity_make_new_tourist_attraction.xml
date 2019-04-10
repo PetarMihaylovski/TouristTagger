@@ -29,6 +29,7 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="@string/addAttractionNameET"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +56,7 @@
         android:layout_marginTop="76dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
+        android:hint="@string/addAttractionLocationET"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etLocation" />
 
     <Button
-        android:id="@+id/btnAddAttraction"
+        android:id="@+id/btnCreateAttraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

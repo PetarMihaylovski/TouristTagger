@@ -2,6 +2,7 @@ package nl.saxion.touristattractiontagger.AdminLogin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import nl.saxion.touristattractiontagger.Adapters.AdminAttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
+import nl.saxion.touristattractiontagger.LoginScreen;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
@@ -27,6 +29,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
     private City city;
     private Button btnAddAttraction;
     private Button btnRemoveAttraction;
+    private Button btnGotoLoginScreen;
     private AdminAttractionDisplayAdapter adapter;
     public static final int NEW_CITY = 1457;
     public static final String CITY_NAME_KEY = "hiddenKey";
@@ -51,9 +54,11 @@ public class TouristAttractionDetails extends AppCompatActivity {
 
         this.btnAddAttraction = findViewById(R.id.btnAddTouristAttr);
         this.btnRemoveAttraction = findViewById(R.id.btnRemoveTouristAttr);
+        this.btnGotoLoginScreen = findViewById(R.id.btnBackToLoginScreen);
 
         addNewAttractionOnClickListener();
         removeAttractionOnClickButton();
+        gotoLoginScreenOnClickListener();
     }
 
     private void removeAttractionOnClickButton() {
@@ -115,5 +120,22 @@ public class TouristAttractionDetails extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (NEW_CITY == requestCode && RESULT_OK == resultCode){
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    private void gotoLoginScreenOnClickListener(){
+        this.btnGotoLoginScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchIntent = new Intent(TouristAttractionDetails.this, LoginScreen.class);
+                startActivity(switchIntent);
+            }
+        });
+    }
 }

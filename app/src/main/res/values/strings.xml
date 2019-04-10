@@ -27,4 +27,7 @@
     <string name="removeVenue">Remove a venue</string>
     <string name="addAttraction">Add tourist attraction</string>
     <string name="typesOfAttractions">Bar/Restaurant/Museum/Theater</string>
+    <string name="addAttractionNameET">Enter the name:</string>
+    <string name="addAttractionLocationET">Enter street name and number</string>
+    <string name="gotoLoginScreen">Go to login screen</string>
 </resources>
