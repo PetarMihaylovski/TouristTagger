@@ -1,6 +1,9 @@
 package nl.saxion.touristattractiontagger.DataProvider;
 
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.Exceptions.SameCityException;
@@ -8,6 +11,7 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
+import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 import nl.saxion.touristattractiontagger.Users.Administrator;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
@@ -17,12 +21,14 @@ public class DataProvider {
     public static ArrayList<City> CITIES;
     public static ArrayList<String> DATA_DISPLAY;
     public static Administrator ADMIN;
+    public static HashMap<User, ArrayList<TouristAttraction>> DUMMY_DATA;
 
     static {
         USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
         DATA_DISPLAY = new ArrayList<>();
         ADMIN = new Administrator("admin", "admin");
+        DUMMY_DATA = new HashMap<>();
 
         City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
@@ -30,6 +36,7 @@ public class DataProvider {
         City plovdiv = new City("Plovdiv", "Bulgaria", "plovdiv_picture.jpeg");
 
         BasicUser firstDummy = new BasicUser("Petar", sofia);
+        BasicUser secondDummy = new BasicUser("Simona", amsterdam);
         try {
             //mass-added since they are the starting cities and cannot have duplicates.
             addCity(amsterdam);
@@ -46,13 +53,16 @@ public class DataProvider {
         amsterdam.addAttraction(new Bar("Hiding In Plain Sight", "Rapenburg 18", "Pina Colada"));
         amsterdam.addAttraction(new Restaurant("Restaurant Zaza's", "Daniël Stalpertstraat 103", "Fillet of COD"));
         amsterdam.addAttraction(new Restaurant("Ciel Bleu Restaurant", "Ferdinand Bolstraat 333", "Smoked Eel"));
-        amsterdam.addAttraction(new Restaurant("Restaurant La Rive", "Professor Tulpplein 1", "Carabineros Prawn"));
+        Restaurant restaurant = new Restaurant("Restaurant La Rive", "Professor Tulpplein 1", "Carabineros Prawn");
+        amsterdam.addAttraction(restaurant);
         amsterdam.addAttraction(new Theater("Internationaal Theater", "Leidseplein 26", "All hands on deck"));
         amsterdam.addAttraction(new Theater("Royal Theater Carré", "Amstel 115 /125", "A little night music"));
         amsterdam.addAttraction(new Theater("DeLaMar", "Marnixstraat 402", "Call it love"));
-        amsterdam.addAttraction(new Museum("Rijksmuseum", "Museumstraat 1", "Johannes Vermeer"));
+        Museum rijksmuseum = new Museum("Rijksmuseum", "Museumstraat 1", "Johannes Vermeer");
+        amsterdam.addAttraction(rijksmuseum);
         amsterdam.addAttraction(new Museum("Anne Frank House", "Prinsengracht 263-267", "The Secret Annex"));
-        amsterdam.addAttraction(new Museum("Van Gogh Museum", "Museumplein 6", "Van Gogh Inspires"));
+        Museum vanGogh = new Museum("Van Gogh Museum", "Museumplein 6", "Van Gogh Inspires");
+        amsterdam.addAttraction(vanGogh);
 
         deventer.addAttraction(new Bar("The Irish Elk", "Brink 29", "El Presidente"));
         deventer.addAttraction(new Bar("Jasmin's", "Brink 79", "Long Island Iced Tea"));
@@ -94,12 +104,18 @@ public class DataProvider {
         plovdiv.addAttraction(new Museum("Regional Ethnographic Museum", "Doctor Stoyan Chomakov 2", "Clothing and textile"));
         plovdiv.addAttraction(new Museum("Aviation Museum", "????", " Different types of airplanes"));
 
-        USERS.add(firstDummy);
-        DATA_DISPLAY.add(firstDummy + " has been in " + firstDummy.getCity() + "\n");
+//        DATA_DISPLAY.add(firstDummy + " has been in " + firstDummy.getCity() + "\n");
         firstDummy.addVisitedVenue(friday);
         firstDummy.addVisitedVenue(boom);
         firstDummy.addVisitedVenue(national);
         firstDummy.addVisitedVenue(museum);
+        DUMMY_DATA.put(firstDummy, firstDummy.getVisitedVenues());
+
+//        DATA_DISPLAY.add(secondDummy + " has been in " + secondDummy.getCity() + "\n");
+        secondDummy.addVisitedVenue(rijksmuseum);
+        secondDummy.addVisitedVenue(restaurant);
+        secondDummy.addVisitedVenue(vanGogh);
+        DUMMY_DATA.put(secondDummy, secondDummy.getVisitedVenues());
     }
 
     /**
