@@ -43,12 +43,10 @@ public class ProgressBar extends View {
     }
 
     public void setValue(int value) {
-        this.value = value;
+        if (value >= 0 && value <= maxvalue) {
+            this.value = value;
+        }
         invalidate();
-    }
-
-    public int getValue() {
-        return value;
     }
 
     @Override
@@ -58,6 +56,6 @@ public class ProgressBar extends View {
         int height = getHeight();
 
         canvas.drawRect(0, 0, width - 1, height, backgroundPaint);
-        canvas.drawRect(0, 0, width * value / maxvalue, height , foregroundPaint);
+        canvas.drawRect(0, 0, width * value / maxvalue, height, foregroundPaint);
     }
 }

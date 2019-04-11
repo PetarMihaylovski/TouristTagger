@@ -16,6 +16,7 @@ import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
+import nl.saxion.touristattractiontagger.Views.ProgressBar;
 
 public class OptionsScreen extends AppCompatActivity {
     private Button btnShowFriends;
@@ -42,6 +43,8 @@ public class OptionsScreen extends AppCompatActivity {
         this.btnEditPlaces = findViewById(R.id.btnEditPlaces);
         TextView tvCityNameDisplay = findViewById(R.id.tvCityName);
         TextView tvNameAndLocation = findViewById(R.id.tvUsernameAndLocation);
+        ProgressBar progressBar = findViewById(R.id.pb3);
+        progressBar.setValue(3);
 
         tvCityNameDisplay.setText(String.format("%s", city));
         tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), city));

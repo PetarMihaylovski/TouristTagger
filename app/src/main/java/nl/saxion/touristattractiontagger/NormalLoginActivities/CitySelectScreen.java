@@ -3,7 +3,6 @@ package nl.saxion.touristattractiontagger.NormalLoginActivities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -16,6 +15,7 @@ import nl.saxion.touristattractiontagger.Adapters.CityDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
+import nl.saxion.touristattractiontagger.Views.ProgressBar;
 
 public class CitySelectScreen extends AppCompatActivity {
     private static ArrayList<City> cities;
@@ -32,6 +32,10 @@ public class CitySelectScreen extends AppCompatActivity {
         cities = DataProvider.CITIES;
         this.nameInput = findViewById(R.id.etNameInput);
         this.nameInput.setText("");
+
+        ProgressBar progressBar = findViewById(R.id.pb1);
+        progressBar.setValue(1);
+
         //Instantiating the list view with adapter.
         CityDisplayAdapter adapter = new CityDisplayAdapter(this, cities);
         ListView listView = findViewById(R.id.lvCitiesDisplay);

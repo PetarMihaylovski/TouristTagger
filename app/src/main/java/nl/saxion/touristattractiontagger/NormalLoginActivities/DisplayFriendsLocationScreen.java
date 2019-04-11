@@ -16,6 +16,7 @@ import nl.saxion.touristattractiontagger.LoginScreen;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
+import nl.saxion.touristattractiontagger.Views.ProgressBar;
 
 public class DisplayFriendsLocationScreen extends AppCompatActivity {
     private BasicUser user;
@@ -28,6 +29,8 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
         TextView tvDisplay = findViewById(R.id.tvDisplay);
         tvDisplay.setText("");
         tvDisplay.setMovementMethod(new ScrollingMovementMethod());
+        ProgressBar progressBar = findViewById(R.id.pb4);
+        progressBar.setValue(4);
 
         //getting the data from the previous screen.
         Intent prevScreen = getIntent();
@@ -42,7 +45,7 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
     private void displayDummyData(TextView tvDisplay) {
         for (Map.Entry mapElement : DataProvider.DUMMY_DATA.entrySet()) {
             BasicUser key = (BasicUser) mapElement.getKey();
-            tvDisplay.setText(String.format(tvDisplay.getText() + getString(R.string.locationShower), key, key.getCity()));
+            tvDisplay.setText(String.format(tvDisplay.getText() + getString(R.string.locationShower) + "\n", key, key.getCity()));
             for (TouristAttraction ta : key.getVisitedVenues()) {
                 tvDisplay.setText(String.format("%s%s", tvDisplay.getText().toString(), ta));
             }
@@ -54,10 +57,10 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
         String data = String.format(getString(R.string.locationShower), this.user, this.user.getCity());
 
         for (String str : DataProvider.DATA_DISPLAY) {
-            tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), str));
+            tvDisplay.setText(String.format("%s%s\n", tvDisplay.getText(), str));
         }
 
-        tvDisplay.setText(String.format("%s" + getString(R.string.locationShower), tvDisplay.getText(), this.user, this.user.getCity()));
+        tvDisplay.setText(String.format("%s" + getString(R.string.locationShower)+ "\n", tvDisplay.getText(), this.user, this.user.getCity()));
 
         for (TouristAttraction ta : this.user.getVisitedVenues()) {
             tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), ta));

@@ -24,12 +24,26 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:scrollbars="vertical"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:scrollbars="vertical"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnGoToLoginScreen"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb4" />
+
+    <nl.saxion.touristattractiontagger.Views.ProgressBar
+        android:id="@+id/pb4"
+        android:layout_width="131dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

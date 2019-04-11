@@ -1,10 +1,8 @@
 package nl.saxion.touristattractiontagger.NormalLoginActivities;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,7 +18,7 @@ import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 import nl.saxion.touristattractiontagger.Users.BasicUser;
-import nl.saxion.touristattractiontagger.Users.User;
+import nl.saxion.touristattractiontagger.Views.ProgressBar;
 
 public class AttractionSelectScreen extends AppCompatActivity {
     private ListView listView;
@@ -37,6 +35,8 @@ public class AttractionSelectScreen extends AppCompatActivity {
         setContentView(R.layout.activity_attraction_select_screen);
 
         TextView tvNameAndLocation = findViewById(R.id.tvNameAndLocation);
+        ProgressBar progressBar = findViewById(R.id.pb2);
+        progressBar.setValue(2);
 
         //Get the username and the chosen city from the previous screen.
         Intent intent = getIntent();
@@ -52,9 +52,6 @@ public class AttractionSelectScreen extends AppCompatActivity {
         catch (NullPointerException npe) {
             npe.printStackTrace();
         }
-
-        //TODO: Sort the list Bar -> Restaurant -> Museum -> Theater
-//        Collections.sort(this.allAttractions);
 
         //Display the username and the city.
         tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), city.getName()));
