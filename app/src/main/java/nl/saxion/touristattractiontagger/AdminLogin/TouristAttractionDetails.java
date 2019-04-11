@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import nl.saxion.touristattractiontagger.Adapters.AdminAttractionDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
@@ -33,6 +34,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
     private AdminAttractionDisplayAdapter adapter;
     public static final int NEW_CITY = 1457;
     public static final String CITY_NAME_KEY = "hiddenKey";
+    private ArrayList<TouristAttraction> touristAttractions;
 
 
     @Override
@@ -43,7 +45,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
         Intent intent = getIntent();
         String cityName = intent.getStringExtra(EditCity.CITY_TRANSFER_KEY);
         this.city = DataProvider.getCityByName(cityName);
-        ArrayList<TouristAttraction> touristAttractions = city.getAttractions();
+        touristAttractions = city.getAttractions();
 
         TextView tvChosenCity = findViewById(R.id.tvChosenCity);
         tvChosenCity.setText(city.toString());
@@ -126,6 +128,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
 
         if (NEW_CITY == requestCode && RESULT_OK == resultCode){
             adapter.notifyDataSetChanged();
+            Collections.sort(this.touristAttractions);
         }
     }
 

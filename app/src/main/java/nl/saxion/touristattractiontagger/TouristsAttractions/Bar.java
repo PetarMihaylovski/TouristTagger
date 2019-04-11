@@ -1,11 +1,12 @@
 package nl.saxion.touristattractiontagger.TouristsAttractions;
 
-public class Bar extends TouristAttraction {
+public class Bar extends TouristAttraction{
     private String specialCocktail;
+
 
     //Default constructor, in order not to throw an error.
     public Bar(String name, String location, String specialCocktail) {
-        super(name, location);
+        super(name, location, 'A');
         this.specialCocktail = specialCocktail;
     }
 
