@@ -22,6 +22,7 @@ public class DataProvider {
         USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
         DATA_DISPLAY = new ArrayList<>();
+        ADMIN = new Administrator("admin", "admin");
 
         City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
@@ -39,7 +40,6 @@ public class DataProvider {
             sce.printStackTrace();
         }
 
-        //TODO: add tourist attractions in the city here.
         amsterdam.addAttraction(new Bar("Door 74", "Reguliersdwarsstraat 74", "Bloody Marry"));
         amsterdam.addAttraction(new Bar("Brouwerij 't IJ", "Funenkade 7", "Cuba Libre"));
         amsterdam.addAttraction(new Bar("Hiding In Plain Sight", "Rapenburg 18", "Pina Colada"));
@@ -53,7 +53,41 @@ public class DataProvider {
         amsterdam.addAttraction(new Museum("Anne Frank House", "Prinsengracht 263-267", "The Secret Annex"));
         amsterdam.addAttraction(new Museum("Van Gogh Museum", "Museumplein 6", "Van Gogh Inspires"));
 
-        ADMIN = new Administrator("admin", "admin");
+        deventer.addAttraction(new Bar("The Irish Elk", "Brink 29", "El Presidente"));
+        deventer.addAttraction(new Bar("Jasmin's", "Brink 79", "Long Island Iced Tea"));
+        deventer.addAttraction(new Bar("Walhalla", "Achter de Muren-Zandpoort 20", "Mind Eraser"));
+        deventer.addAttraction(new Restaurant("'t Zusje", "Boreelplein 55", "Marinated spare-ribs"));
+        deventer.addAttraction(new Restaurant("La Cubanita", "Brink 14", "Tapas"));
+        deventer.addAttraction(new Restaurant("Pura Vida", "Grote Overstraat 36/40", "Carne"));
+        deventer.addAttraction(new Theater("Shouwburg", "Leeuwenbrug 2", "Huub Stapel, Johana Ter Steege e.a"));
+        deventer.addAttraction(new Museum("Toy Museumm", "Brink 47", "Peter Pan's Special"));
+        deventer.addAttraction(new Museum("De Waag", "Brink 56", "Deventer, Stad van de IJssel"));
+        deventer.addAttraction(new Museum("Geert Groote Huis", "Lamme van Dieseplein 4", "The life of Geert Groote"));
+
+        sofia.addAttraction(new Bar("Barabar", "Triaditsa 4", "Dry Gin Martini"));
+        sofia.addAttraction(new Bar("Friday", "General Yosif V. Gourko 21", "Whiskey Sour"));
+        sofia.addAttraction(new Bar("Hambar", "6-ti septemvri 22", "Jack Rose"));
+        sofia.addAttraction(new Restaurant("Chef's", "Lyubata", "Veal bon fillet steak"));
+        sofia.addAttraction(new Restaurant("Boom Burgers", "Tsar Osvoboditel 12", "V Surf-N-Turf Burger"));
+        sofia.addAttraction(new Restaurant("Happy Sushi Bar & Grill", "Georgi S. Rakovski 145", "Wabi-Sabi Combo"));
+        sofia.addAttraction(new Theater("\"Ivan Vazov\" National Theater", "Dyakon Ignatiy 5", "Ghosts"));
+        sofia.addAttraction(new Theater("Salza I Smyah", "Georgi S. Rakovski 127", "Frankenstein"));
+        sofia.addAttraction(new Theater("Bulgarian Army Theatre", "Georgi S. Rakovski 98", "Tartuffe"));
+        sofia.addAttraction(new Museum("National Historical Museum", "Vitoshko lale 16", "Earth's Tresures"));
+        sofia.addAttraction(new Museum("Earth and Man", "Cherni vrah 4", "Stone's Poetry"));
+        sofia.addAttraction(new Museum("National Art Gallery", "Knyaz Aleksandar I 1", "Van Gogh"));
+
+        plovdiv.addAttraction(new Bar("Rock Bar Download", "Lady Strangford 5", "Screwdriver"));
+        plovdiv.addAttraction(new Bar("Cat and Mouse Craft Beer Bar", "Hristo Dyukmedzhiev 14", "Presbyterian"));
+        plovdiv.addAttraction(new Bar("Club Fargo", "Gladston 1", "Gin Gimlet"));
+        plovdiv.addAttraction(new Restaurant("Pavaj", "Zlatarska 7", "French Fries"));
+        plovdiv.addAttraction(new Restaurant("Hemingway", "General Gourko 10", "Smoked Duck Magret"));
+        plovdiv.addAttraction(new Restaurant("Maramao", "Stefan Verkovich 8", "Beef Steak"));
+        plovdiv.addAttraction(new Theater("Ancient Theater of Philippopolis", "Tsar Ivailo 4", "Cindarella"));
+        plovdiv.addAttraction(new Theater("Drama Theatre", "Knyaz Alexander I 38", "Odyssey"));
+        plovdiv.addAttraction(new Museum("Regional Historical Museum", "Mitropolit Paisiy 2", "Bulgarian National Revival"));
+        plovdiv.addAttraction(new Museum("Regional Ethnographic Museum", "Doctor Stoyan Chomakov 2", "Clothing and textile"));
+        plovdiv.addAttraction(new Museum("Aviation Museum", "????", " Different types of airplanes"));
     }
 
     /**
