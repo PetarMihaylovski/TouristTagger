@@ -42,7 +42,7 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
     private void displayDummyData(TextView tvDisplay) {
         for (Map.Entry mapElement : DataProvider.DUMMY_DATA.entrySet()) {
             BasicUser key = (BasicUser) mapElement.getKey();
-            tvDisplay.setText(String.format(tvDisplay.getText() + " %s was in %s\n", key, key.getCity()));
+            tvDisplay.setText(String.format(tvDisplay.getText() + getString(R.string.locationShower), key, key.getCity()));
             for (TouristAttraction ta : key.getVisitedVenues()) {
                 tvDisplay.setText(String.format("%s%s", tvDisplay.getText().toString(), ta));
             }
@@ -51,13 +51,13 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
     }
 
     private void displayData(TextView tvDisplay) {
-        String data = String.format("%s was in %s", this.user, this.user.getCity());
+        String data = String.format(getString(R.string.locationShower), this.user, this.user.getCity());
 
         for (String str : DataProvider.DATA_DISPLAY) {
             tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), str));
         }
 
-        tvDisplay.setText(String.format("%s %s was in %s\n", tvDisplay.getText(), this.user, this.user.getCity()));
+        tvDisplay.setText(String.format("%s" + getString(R.string.locationShower), tvDisplay.getText(), this.user, this.user.getCity()));
 
         for (TouristAttraction ta : this.user.getVisitedVenues()) {
             tvDisplay.setText(String.format("%s%s", tvDisplay.getText(), ta));

@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.Collections;
+
 import nl.saxion.touristattractiontagger.Adapters.CityDisplayAdapter;
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
@@ -63,8 +65,8 @@ public class EditCity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(EditCity.this);
-                alertDialog.setTitle("Remove city");
-                alertDialog.setMessage("Enter the name of the city");
+                alertDialog.setTitle(R.string.cityRemove);
+                alertDialog.setMessage(R.string.cityNamePrompt);
 
                 final EditText input = new EditText(EditCity.this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -73,7 +75,7 @@ public class EditCity extends AppCompatActivity {
                 input.setLayoutParams(params);
                 alertDialog.setView(input);
 
-                alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                alertDialog.setPositiveButton(R.string.rmvPrompt, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String cityName = input.getText().toString();
@@ -82,20 +84,20 @@ public class EditCity extends AppCompatActivity {
                             if (DataProvider.removeCityByName(cityName)){
                                 adapter.remove(DataProvider.getCityByName(cityName));
                                 adapter.notifyDataSetChanged();
-                                Toast.makeText(EditCity.this, "City removed successfully.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditCity.this, getString(R.string.notifRemoveSuccess), Toast.LENGTH_LONG).show();
                             }
                             else {
-                                Toast.makeText(EditCity.this, "This city does not exist", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditCity.this, getString(R.string.notifUnexistingCity), Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {
-                            Toast.makeText(EditCity.this, "Invalid city name!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditCity.this, getString(R.string.notifInvalidCity), Toast.LENGTH_SHORT).show();
 
                         }
                     }
                 });
 
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -122,6 +124,7 @@ public class EditCity extends AppCompatActivity {
 
         if (requestCode == ADD_REQUEST_CODE && resultCode == RESULT_OK) {
             adapter.notifyDataSetChanged();
+            Collections.sort(DataProvider.CITIES);
         }
     }
 }

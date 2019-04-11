@@ -82,12 +82,10 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
                     if (!user.getVisitedVenues().contains(currTouristAttraction)){
                         user.addVisitedVenue(currTouristAttraction);
                     }
-                    Log.d("mafaka", "" + user.getVisitedVenues());
                 }
                 else {
                     currTouristAttraction.setChecked(false);
                     user.removeVisitedVenue(currTouristAttraction);
-                    Log.d("mafaka", "" + user.getVisitedVenues());
                 }
             }
         });

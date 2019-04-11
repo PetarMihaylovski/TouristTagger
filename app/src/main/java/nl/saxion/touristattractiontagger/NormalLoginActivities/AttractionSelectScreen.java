@@ -50,14 +50,14 @@ public class AttractionSelectScreen extends AppCompatActivity {
             this.allAttractions = city.getAttractions();
         }
         catch (NullPointerException npe) {
-            Log.d("nullPointer", "Attraction not found.");
+            npe.printStackTrace();
         }
 
         //TODO: Sort the list Bar -> Restaurant -> Museum -> Theater
 //        Collections.sort(this.allAttractions);
 
         //Display the username and the city.
-        tvNameAndLocation.setText(String.format("%s is in %s", this.user.getName(), city.getName()));
+        tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), city.getName()));
 
         AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions, this.user);
         this.listView = findViewById(R.id.lvAttractionsDisplay);

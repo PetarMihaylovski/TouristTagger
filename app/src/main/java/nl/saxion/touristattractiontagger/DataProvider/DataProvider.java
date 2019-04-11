@@ -30,19 +30,20 @@ public class DataProvider {
         ADMIN = new Administrator("admin", "admin");
         DUMMY_DATA = new HashMap<>();
 
-        City amsterdam = new City("Amsterdam", "The Netherlands", "amsterdam_picture.jpg");
-        City deventer = new City("Deventer", "The Netherlands", "deventer_picture.jpg");
+        City amsterdam = new City("Amsterdam", "Netherlands", "amsterdam_picture.jpg");
+        City deventer = new City("Deventer", "Netherlands", "deventer_picture.jpg");
         City sofia = new City("Sofia", "Bulgaria", "sofia_picture.jpg");
         City plovdiv = new City("Plovdiv", "Bulgaria", "plovdiv_picture.jpeg");
 
         BasicUser firstDummy = new BasicUser("Petar", sofia);
         BasicUser secondDummy = new BasicUser("Simona", amsterdam);
+
         try {
             //mass-added since they are the starting cities and cannot have duplicates.
-            addCity(amsterdam);
-            addCity(deventer);
             addCity(sofia);
             addCity(plovdiv);
+            addCity(amsterdam);
+            addCity(deventer);
         }
         catch (SameCityException sce) {
             sce.printStackTrace();
@@ -104,14 +105,12 @@ public class DataProvider {
         plovdiv.addAttraction(new Museum("Regional Ethnographic Museum", "Doctor Stoyan Chomakov 2", "Clothing and textile"));
         plovdiv.addAttraction(new Museum("Aviation Museum", "????", " Different types of airplanes"));
 
-//        DATA_DISPLAY.add(firstDummy + " has been in " + firstDummy.getCity() + "\n");
         firstDummy.addVisitedVenue(friday);
         firstDummy.addVisitedVenue(boom);
         firstDummy.addVisitedVenue(national);
         firstDummy.addVisitedVenue(museum);
         DUMMY_DATA.put(firstDummy, firstDummy.getVisitedVenues());
 
-//        DATA_DISPLAY.add(secondDummy + " has been in " + secondDummy.getCity() + "\n");
         secondDummy.addVisitedVenue(rijksmuseum);
         secondDummy.addVisitedVenue(restaurant);
         secondDummy.addVisitedVenue(vanGogh);

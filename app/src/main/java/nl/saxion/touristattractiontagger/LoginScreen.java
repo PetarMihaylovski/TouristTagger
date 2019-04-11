@@ -32,9 +32,6 @@ public class LoginScreen extends AppCompatActivity {
         this.btnAdminLogin = findViewById(R.id.btnLogin);
         this.btnHelp= findViewById(R.id.btnHelp);
 
-//        this.etAdminUsername.setText("admin");
-//        this.etAdminPassword.setText("admin");
-
         normalLoginOnClickListener();
         adminLoginListener();
         helpButtonOnClickListener();
@@ -53,7 +50,7 @@ public class LoginScreen extends AppCompatActivity {
                     startActivity(switchScreen);
                 }
                 else {
-                    Toast.makeText(LoginScreen.this, "Wrong username or password!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginScreen.this, getString(R.string.wrongUsernameorPasswordPrompt), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -77,7 +74,7 @@ public class LoginScreen extends AppCompatActivity {
         this.btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginScreen.this, "username: admin, password: admin", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginScreen.this, getString(R.string.adminUserAndPass), Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -68,9 +68,8 @@ public class TouristAttractionDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(TouristAttractionDetails.this);
-                alertDialog.setTitle("Remove a tourist attraction");
-                alertDialog.setMessage("Enter the name of the attraction");
-                Log.d("removeATR", "In the method.");
+                alertDialog.setTitle(R.string.notifRMTourAttr);
+                alertDialog.setMessage(R.string.enterTourAttrName);
 
                 final EditText input = new EditText(TouristAttractionDetails.this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -79,14 +78,14 @@ public class TouristAttractionDetails extends AppCompatActivity {
                 input.setLayoutParams(params);
                 alertDialog.setView(input);
 
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
 
-                alertDialog.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
+                alertDialog.setPositiveButton(getString(R.string.rmvPrompt), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String attractionName = input.getText().toString();
@@ -95,14 +94,14 @@ public class TouristAttractionDetails extends AppCompatActivity {
                                 TouristAttraction attraction = city.findAttrByName(attractionName);
                                 adapter.remove(attraction);
                                 adapter.notifyDataSetChanged();
-                                Toast.makeText(TouristAttractionDetails.this, "Tourist attraction removed successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TouristAttractionDetails.this, getString(R.string.notifTourAttrAdded), Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                Toast.makeText(TouristAttractionDetails.this, "Tourist attraction does not exist!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TouristAttractionDetails.this, getString(R.string.notifTourAttrNotFound), Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {
-                            Toast.makeText(TouristAttractionDetails.this, "Invalid tourist attraction name!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TouristAttractionDetails.this, getString(R.string.notifWrongTourAttrName), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

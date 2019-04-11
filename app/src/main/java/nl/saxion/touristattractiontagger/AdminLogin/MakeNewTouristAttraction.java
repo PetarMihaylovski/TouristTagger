@@ -63,26 +63,26 @@ public class MakeNewTouristAttraction extends AppCompatActivity {
                 if (!(type.equals("") || name.equals("") || location.equals("") || specialAttribute.equals(""))) {
                     if ("bar".equals(type)) {
                         chosenCity.addAttraction(new Bar(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
                     }
                     else if ("restaurant".equals(type)) {
                         chosenCity.addAttraction(new Restaurant(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
                     }
                     else if ("museum".equals(type)) {
                         chosenCity.addAttraction(new Museum(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
                     }
                     else if ("theater".equals(type)) {
                         chosenCity.addAttraction(new Theater(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(MakeNewTouristAttraction.this, "Wrong type of attraction.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    Toast.makeText(MakeNewTouristAttraction.this, "Not a valid city!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notValidCity), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -106,21 +106,21 @@ public class MakeNewTouristAttraction extends AppCompatActivity {
                 if (!type.equals("")){
                     switch (type) {
                         case "bar":
-                            etSpecialAttribute.setHint("Special cocktail: ");
+                            etSpecialAttribute.setHint(getString(R.string.specialCocktail));
                             break;
                         case "restaurant":
-                            etSpecialAttribute.setHint("Special dish: ");
+                            etSpecialAttribute.setHint(getString(R.string.specialDish));
                             break;
                         case "museum":
-                            etSpecialAttribute.setHint("Exhibition: ");
+                            etSpecialAttribute.setHint(getString(R.string.exhibition));
                             break;
                         case "theater":
-                            etSpecialAttribute.setHint("Play: ");
+                            etSpecialAttribute.setHint(getString(R.string.play));
                             break;
                     }
                 }
                 else {
-                    Toast.makeText(MakeNewTouristAttraction.this, "Wrong type of attraction", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifWronAttr), Toast.LENGTH_SHORT).show();
                 }
             }
         });

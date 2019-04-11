@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
-public class City {
+public class City implements Comparable<City>{
     private String name;
     private String country;
     private ArrayList<TouristAttraction> attractions;
@@ -62,5 +62,10 @@ public class City {
     @Override
     public String toString() {
         return name + ", " + country;
+    }
+
+    @Override
+    public int compareTo(City city) {
+        return this.country.compareTo(city.getCountry());
     }
 }

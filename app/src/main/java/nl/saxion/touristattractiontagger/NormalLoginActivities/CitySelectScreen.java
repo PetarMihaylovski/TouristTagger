@@ -42,7 +42,7 @@ public class CitySelectScreen extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Check to see if the user has entered his name.
                 if (nameInput.getText().toString().equals("")){
-                    Toast.makeText(CitySelectScreen.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CitySelectScreen.this, getString(R.string.enterNamePrompt), Toast.LENGTH_SHORT).show();
                 }
                 else{
                     //getting the name from the editText.
