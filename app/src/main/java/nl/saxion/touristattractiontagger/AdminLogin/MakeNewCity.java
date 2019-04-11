@@ -48,12 +48,12 @@ public class MakeNewCity extends AppCompatActivity {
                 String countryName = etCountryName.getText().toString();
                 String pictureID = etPictureName.getText().toString();
 
-                if (cityName.equals("") || countryName.equals("") || pictureID.equals("")){
+                if (cityName.equals("") || countryName.equals("")){
                     Toast.makeText(MakeNewCity.this, "Invalid information! City cannot be added.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try {
-                        DataProvider.addCity(new City(cityName, countryName, pictureID));
+                        DataProvider.addCity(new City(cityName, countryName,pictureID));
                         Toast.makeText(MakeNewCity.this, "City added successfully. Press the back button to exit.", Toast.LENGTH_LONG).show();
                     }
                     catch (SameCityException sce) {

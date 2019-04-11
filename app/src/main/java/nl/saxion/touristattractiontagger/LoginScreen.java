@@ -32,8 +32,12 @@ public class LoginScreen extends AppCompatActivity {
         this.btnAdminLogin = findViewById(R.id.btnLogin);
         this.btnHelp= findViewById(R.id.btnHelp);
 
+//        this.etAdminUsername.setText("admin");
+//        this.etAdminPassword.setText("admin");
+
         normalLoginOnClickListener();
         adminLoginListener();
+        helpButtonOnClickListener();
     }
 
     private void adminLoginListener(){
@@ -69,6 +73,13 @@ public class LoginScreen extends AppCompatActivity {
         });
     }
 
-    p
+    private void helpButtonOnClickListener(){
+        this.btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginScreen.this, "username: admin, password: admin", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
 }
