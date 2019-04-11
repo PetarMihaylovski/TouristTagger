@@ -42,6 +42,11 @@ public class MakeNewTouristAttraction extends AppCompatActivity {
         this.etSpecialAttribute = findViewById(R.id.etSpecialAttribute);
         this.btnAddAttraction = findViewById(R.id.btnCreateAttraction);
 
+        this.etType.setText("");
+        this.etName.setText("");
+        this.etLocation.setText("");
+        this.etSpecialAttribute.setText("");
+
         typeChangeListener();
         createAttractionOnClickListener();
     }
@@ -56,21 +61,28 @@ public class MakeNewTouristAttraction extends AppCompatActivity {
                 String specialAttribute = etSpecialAttribute.getText().toString();
 
                 if (!(type.equals("") || name.equals("") || location.equals("") || specialAttribute.equals(""))) {
-                    switch (type) {
-                        case "bar":
-                            chosenCity.addAttraction(new Bar(name, location, specialAttribute));
-                            break;
-                        case "restaurant":
-                            chosenCity.addAttraction(new Restaurant(name, location, specialAttribute));
-                            break;
-                        case "museum":
-                            chosenCity.addAttraction(new Museum(name, location, specialAttribute));
-                            break;
-                        case "theater":
-                            chosenCity.addAttraction(new Theater(name, location, specialAttribute));
-                            break;
+                    if ("bar".equals(type)) {
+                        chosenCity.addAttraction(new Bar(name, location, specialAttribute));
+                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                    else if ("restaurant".equals(type)) {
+                        chosenCity.addAttraction(new Restaurant(name, location, specialAttribute));
+                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if ("museum".equals(type)) {
+                        chosenCity.addAttraction(new Museum(name, location, specialAttribute));
+                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if ("theater".equals(type)) {
+                        chosenCity.addAttraction(new Theater(name, location, specialAttribute));
+                        Toast.makeText(MakeNewTouristAttraction.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(MakeNewTouristAttraction.this, "Wrong type of attraction.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(MakeNewTouristAttraction.this, "Not a valid city!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -91,20 +103,24 @@ public class MakeNewTouristAttraction extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String type = s.toString().toLowerCase();
-
-                switch (type) {
-                    case "bar":
-                        etSpecialAttribute.setHint("Special cocktail: ");
-                        break;
-                    case "restaurant":
-                        etSpecialAttribute.setHint("Special dish: ");
-                        break;
-                    case "museum":
-                        etSpecialAttribute.setHint("Exhibition: ");
-                        break;
-                    case "theater":
-                        etSpecialAttribute.setHint("Play: ");
-                        break;
+                if (!type.equals("")){
+                    switch (type) {
+                        case "bar":
+                            etSpecialAttribute.setHint("Special cocktail: ");
+                            break;
+                        case "restaurant":
+                            etSpecialAttribute.setHint("Special dish: ");
+                            break;
+                        case "museum":
+                            etSpecialAttribute.setHint("Exhibition: ");
+                            break;
+                        case "theater":
+                            etSpecialAttribute.setHint("Play: ");
+                            break;
+                    }
+                }
+                else {
+                    Toast.makeText(MakeNewTouristAttraction.this, "Wrong type of attraction", Toast.LENGTH_SHORT).show();
                 }
             }
         });
