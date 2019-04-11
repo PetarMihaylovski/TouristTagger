@@ -21,7 +21,6 @@ public class City implements Comparable<City>{
         this.attractions.add(attraction);
     }
 
-    //TODO: make the necessary checks
     public boolean removeAttraction(String name){
         for (TouristAttraction ta : this.attractions) {
             if (ta.getName().toLowerCase().equals(name.toLowerCase())){

@@ -15,7 +15,6 @@ public class BasicUser extends User{
         this.visitedVenues = new ArrayList<>();
     }
 
-    //TODO: check if the venue is more than once
     public void addVisitedVenue(TouristAttraction attraction){
         this.visitedVenues.add(attraction);
     }
@@ -25,7 +24,6 @@ public class BasicUser extends User{
         return visitedVenuesCopy;
     }
 
-    //TODO: do the necessary checks
     public void removeVisitedVenue(TouristAttraction attraction){
         this.visitedVenues.remove(attraction);
     }

@@ -1,7 +1,5 @@
 package nl.saxion.touristattractiontagger.DataProvider;
 
-import android.widget.ArrayAdapter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,7 +15,7 @@ import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
-    public static ArrayList<BasicUser> USERS;
+    private static ArrayList<BasicUser> USERS;
     public static ArrayList<City> CITIES;
     public static ArrayList<String> DATA_DISPLAY;
     public static Administrator ADMIN;
@@ -143,12 +141,10 @@ public class DataProvider {
         return null;
     }
 
-    //TODO: make necessary checks
     public static void addData(String data) {
         DATA_DISPLAY.add(data);
     }
 
-    //TODO: make the necessary checks
     public static void addUser(String name, City city) {
         USERS.add(new BasicUser(name, city));
     }

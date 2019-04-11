@@ -8,10 +8,6 @@ public class Restaurant extends TouristAttraction {
         this.specialDish = specialDish;
     }
 
-    public String getSpecialDish() {
-        return specialDish;
-    }
-
     @Override
     public String getSpecialAttribute() {
         return specialDish;

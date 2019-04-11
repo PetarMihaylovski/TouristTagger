@@ -13,7 +13,7 @@ public abstract class TouristAttraction implements Comparable<TouristAttraction>
         this.order = order;
     }
 
-    public char getOrder() {
+    private char getOrder() {
         return this.order;
     }
 
@@ -38,12 +38,15 @@ public abstract class TouristAttraction implements Comparable<TouristAttraction>
     }
 
     public int compareTo(TouristAttraction ta) {
-        if (this.getOrder() < ta.getOrder())
+        if (this.getOrder() < ta.getOrder()) {
             return -1;
-        else if (this.getOrder()>ta.getOrder())
+        }
+        else if (this.getOrder()>ta.getOrder()){
             return 1;
-        else
+        }
+        else{
             return 0;
+        }
     }
 
     @Override

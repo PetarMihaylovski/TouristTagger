@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Map;
@@ -71,7 +70,6 @@ public class DisplayFriendsLocationScreen extends AppCompatActivity {
         DataProvider.addData(data);
     }
 
-    //TODO: find way to reset the checkboxes
     private void goToLoginScreenOnClickListener() {
         Button btnGotoLoginScreen = findViewById(R.id.btnGoToLoginScreen);
         btnGotoLoginScreen.setOnClickListener(new View.OnClickListener() {
