@@ -13,7 +13,7 @@ import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
-    private static ArrayList<BasicUser> USERS;
+    public static ArrayList<BasicUser> USERS;
     public static ArrayList<City> CITIES;
     public static ArrayList<String> DATA_DISPLAY;
     public static Administrator ADMIN;
@@ -29,6 +29,7 @@ public class DataProvider {
         City sofia = new City("Sofia", "Bulgaria", "sofia_picture.jpg");
         City plovdiv = new City("Plovdiv", "Bulgaria", "plovdiv_picture.jpeg");
 
+        BasicUser firstDummy = new BasicUser("Petar", sofia);
         try {
             //mass-added since they are the starting cities and cannot have duplicates.
             addCity(amsterdam);
@@ -65,15 +66,19 @@ public class DataProvider {
         deventer.addAttraction(new Museum("Geert Groote Huis", "Lamme van Dieseplein 4", "The life of Geert Groote"));
 
         sofia.addAttraction(new Bar("Barabar", "Triaditsa 4", "Dry Gin Martini"));
-        sofia.addAttraction(new Bar("Friday", "General Yosif V. Gourko 21", "Whiskey Sour"));
+        Bar friday = new Bar("Friday", "General Yosif V. Gourko 21", "Whiskey Sour");
+        sofia.addAttraction(friday);
         sofia.addAttraction(new Bar("Hambar", "6-ti septemvri 22", "Jack Rose"));
         sofia.addAttraction(new Restaurant("Chef's", "Lyubata", "Veal bon fillet steak"));
-        sofia.addAttraction(new Restaurant("Boom Burgers", "Tsar Osvoboditel 12", "V Surf-N-Turf Burger"));
+        Restaurant boom = new Restaurant("Boom Burgers", "Tsar Osvoboditel 12", "V Surf-N-Turf Burger");
+        sofia.addAttraction(boom);
         sofia.addAttraction(new Restaurant("Happy Sushi Bar & Grill", "Georgi S. Rakovski 145", "Wabi-Sabi Combo"));
-        sofia.addAttraction(new Theater("\"Ivan Vazov\" National Theater", "Dyakon Ignatiy 5", "Ghosts"));
+        Theater national = new Theater("\"Ivan Vazov\" National Theater", "Dyakon Ignatiy 5", "Ghosts");
+        sofia.addAttraction(national);
         sofia.addAttraction(new Theater("Salza I Smyah", "Georgi S. Rakovski 127", "Frankenstein"));
         sofia.addAttraction(new Theater("Bulgarian Army Theatre", "Georgi S. Rakovski 98", "Tartuffe"));
-        sofia.addAttraction(new Museum("National Historical Museum", "Vitoshko lale 16", "Earth's Tresures"));
+        Museum museum = new Museum("National Historical Museum", "Vitoshko lale 16", "Earth's Tresures");
+        sofia.addAttraction(museum);
         sofia.addAttraction(new Museum("Earth and Man", "Cherni vrah 4", "Stone's Poetry"));
         sofia.addAttraction(new Museum("National Art Gallery", "Knyaz Aleksandar I 1", "Van Gogh"));
 
@@ -88,6 +93,13 @@ public class DataProvider {
         plovdiv.addAttraction(new Museum("Regional Historical Museum", "Mitropolit Paisiy 2", "Bulgarian National Revival"));
         plovdiv.addAttraction(new Museum("Regional Ethnographic Museum", "Doctor Stoyan Chomakov 2", "Clothing and textile"));
         plovdiv.addAttraction(new Museum("Aviation Museum", "????", " Different types of airplanes"));
+
+        USERS.add(firstDummy);
+        DATA_DISPLAY.add(firstDummy + " has been in " + firstDummy.getCity() + "\n");
+        firstDummy.addVisitedVenue(friday);
+        firstDummy.addVisitedVenue(boom);
+        firstDummy.addVisitedVenue(national);
+        firstDummy.addVisitedVenue(museum);
     }
 
     /**
