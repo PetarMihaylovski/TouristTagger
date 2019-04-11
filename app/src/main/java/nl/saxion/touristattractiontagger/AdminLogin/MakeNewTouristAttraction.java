@@ -19,7 +19,6 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.Restaurant;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Theater;
 
 public class MakeNewTouristAttraction extends AppCompatActivity {
-    //TODO: rename all city instances to chosenCity!
     private City chosenCity;
     private EditText etType;
     private EditText etName;

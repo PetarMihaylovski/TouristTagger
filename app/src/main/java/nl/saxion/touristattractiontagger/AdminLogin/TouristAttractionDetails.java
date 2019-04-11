@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +26,7 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
 public class TouristAttractionDetails extends AppCompatActivity {
 
-    private City city;
+    private City chosenCity;
     private Button btnAddAttraction;
     private Button btnRemoveAttraction;
     private Button btnGotoLoginScreen;
@@ -44,11 +43,11 @@ public class TouristAttractionDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         String cityName = intent.getStringExtra(EditCity.CITY_TRANSFER_KEY);
-        this.city = DataProvider.getCityByName(cityName);
-        touristAttractions = city.getAttractions();
+        this.chosenCity = DataProvider.getCityByName(cityName);
+        touristAttractions = chosenCity.getAttractions();
 
         TextView tvChosenCity = findViewById(R.id.tvChosenCity);
-        tvChosenCity.setText(city.toString());
+        tvChosenCity.setText(chosenCity.toString());
 
         adapter = new AdminAttractionDisplayAdapter(this, touristAttractions);
         ListView lvAttractionsDisplay = findViewById(R.id.lvTouristAttrAdminDisplay);
@@ -90,8 +89,8 @@ public class TouristAttractionDetails extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String attractionName = input.getText().toString();
                         if (!attractionName.equals("")) {
-                            if (city.removeAttraction(attractionName)) {
-                                TouristAttraction attraction = city.findAttrByName(attractionName);
+                            if (chosenCity.removeAttraction(attractionName)) {
+                                TouristAttraction attraction = chosenCity.findAttrByName(attractionName);
                                 adapter.remove(attraction);
                                 adapter.notifyDataSetChanged();
                                 Toast.makeText(TouristAttractionDetails.this, getString(R.string.notifTourAttrAdded), Toast.LENGTH_SHORT).show();
@@ -115,7 +114,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent switchScreens = new Intent(TouristAttractionDetails.this, MakeNewTouristAttraction.class);
-                switchScreens.putExtra(CITY_NAME_KEY, city.getName());
+                switchScreens.putExtra(CITY_NAME_KEY, chosenCity.getName());
                 startActivityForResult(switchScreens, NEW_CITY);
             }
         });

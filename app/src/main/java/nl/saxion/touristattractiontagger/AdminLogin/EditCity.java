@@ -51,10 +51,10 @@ public class EditCity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //getting the clicked city
-                City city = DataProvider.CITIES.get(position);
+                City chosenCity = DataProvider.CITIES.get(position);
                 //switching the activity and transferring the city which was clicked.
                 Intent switchScreen = new Intent(EditCity.this, TouristAttractionDetails.class);
-                switchScreen.putExtra(CITY_TRANSFER_KEY, city.getName());
+                switchScreen.putExtra(CITY_TRANSFER_KEY, chosenCity.getName());
                 startActivity(switchScreen);
             }
         });

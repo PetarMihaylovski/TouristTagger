@@ -22,7 +22,7 @@ import nl.saxion.touristattractiontagger.Views.ProgressBar;
 
 public class AttractionSelectScreen extends AppCompatActivity {
     private ListView listView;
-    private City city; //the city
+    private City chosenCity; //the chosenCity
     private BasicUser user; //the user
     private ArrayList<TouristAttraction> allAttractions;
     public static final String NAME_KEY = "randomKeyGen";
@@ -38,23 +38,23 @@ public class AttractionSelectScreen extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.pb2);
         progressBar.setValue(2);
 
-        //Get the username and the chosen city from the previous screen.
+        //Get the username and the chosen chosenCity from the previous screen.
         Intent intent = getIntent();
         String usernameAsString = intent.getStringExtra(CitySelectScreen.NAME_KEY);
         this.user = (BasicUser) DataProvider.getUserByName(usernameAsString);
         String cityName = intent.getStringExtra(CitySelectScreen.CITY_KEY);
-        this.city = DataProvider.getCityByName(cityName);
+        this.chosenCity = DataProvider.getCityByName(cityName);
 
         try {
-            //Link the city with its arrayList of allAttractions.
-            this.allAttractions = city.getAttractions();
+            //Link the chosenCity with its arrayList of allAttractions.
+            this.allAttractions = chosenCity.getAttractions();
         }
         catch (NullPointerException npe) {
             npe.printStackTrace();
         }
 
-        //Display the username and the city.
-        tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), city.getName()));
+        //Display the username and the chosenCity.
+        tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), chosenCity.getName()));
 
         AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions, this.user);
         this.listView = findViewById(R.id.lvAttractionsDisplay);
@@ -68,7 +68,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                Toast.makeText(AttractionSelectScreen.this, allAttractions.get(position).getLocation() + ", " + city, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AttractionSelectScreen.this, allAttractions.get(position).getLocation() + ", " + chosenCity, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -80,7 +80,7 @@ public class AttractionSelectScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent switchScreen = new Intent(AttractionSelectScreen.this, OptionsScreen.class);
                 switchScreen.putExtra(NAME_KEY, user.toString());
-                switchScreen.putExtra(CITY_KEY, city.getName());
+                switchScreen.putExtra(CITY_KEY, chosenCity.getName());
                 startActivityForResult(switchScreen, CONFIRMATION_CODE);
             }
         });

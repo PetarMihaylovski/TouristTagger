@@ -37,7 +37,7 @@ public class OptionsScreen extends AppCompatActivity {
         String userAsString = prevScreen.getStringExtra(AttractionSelectScreen.NAME_KEY);
         this.user = (BasicUser) DataProvider.getUserByName(userAsString);
         cityAsString = prevScreen.getStringExtra(AttractionSelectScreen.CITY_KEY);
-        City city = DataProvider.getCityByName(cityAsString);
+        City chosenCity = DataProvider.getCityByName(cityAsString);
 
         this.btnShowFriends = findViewById(R.id.btnShowFriends);
         this.btnEditPlaces = findViewById(R.id.btnEditPlaces);
@@ -46,9 +46,9 @@ public class OptionsScreen extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.pb3);
         progressBar.setValue(3);
 
-        tvCityNameDisplay.setText(String.format("%s", city));
-        tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), city));
-        loadImage(city);
+        tvCityNameDisplay.setText(String.format("%s", chosenCity));
+        tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), chosenCity));
+        loadImage(chosenCity);
         showFriendsOnClickListener();
         editSelectedPlacesOnClickListener();
     }
