@@ -21,6 +21,10 @@ public class LoginScreen extends AppCompatActivity {
     private Button btnAdminLogin;
     private Button btnHelp;
 
+    /**
+     * Assigning the views.
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +36,27 @@ public class LoginScreen extends AppCompatActivity {
         this.btnAdminLogin = findViewById(R.id.btnLogin);
         this.btnHelp= findViewById(R.id.btnHelp);
 
+        //On click listeners.
         normalLoginOnClickListener();
         adminLoginListener();
         helpButtonOnClickListener();
     }
 
+    /**
+     * On click listener for the login button.
+     * Compares the user input from the two input fields
+     * with the username and the password of the admin.
+     */
     private void adminLoginListener(){
         this.btnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Administrator admin = DataProvider.ADMIN;
+                //Getting the values from the input fields.
                 String usernameInput = etAdminUsername.getText().toString();
                 String passwordInput = etAdminPassword.getText().toString();
 
+                //Making the necessary checks.
                 if (usernameInput.equals(admin.getName()) && passwordInput.equals(admin.getPassword())){
                     Intent switchScreen = new Intent(LoginScreen.this, EditCity.class);
                     startActivity(switchScreen);
@@ -58,7 +70,8 @@ public class LoginScreen extends AppCompatActivity {
 
 
     /**
-     * The normal way to login as a basic user.
+     * On click listener for the
+     * normal way to login as a normal user.
      */
     private void normalLoginOnClickListener() {
         btnNormalUserLogin.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +83,10 @@ public class LoginScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * On click listener for the help button,
+     * showing the admin credentials.
+     */
     private void helpButtonOnClickListener(){
         this.btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override

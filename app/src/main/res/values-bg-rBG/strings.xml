@@ -44,7 +44,7 @@
     <string name="notifCannotAddCity">Невалидна информация! Градът не може да бъде добавен</string>
     <string name="notifCityAdded">Градът е добавен успешно. Натиснете бутона за връщане.</string>
     <string name="notifAttrAdded">Атракцията е добавена успешно!</string>
-    <string name="notValidCity">Невалиден град!</string>
+    <string name="notValidAttraction">Невалидна туристическа атракция!</string>
     <string name="specialCocktail">"Специален коктейл: "</string>
     <string name="specialDish">"Специално ястие: "</string>
     <string name="exhibition">"Изложба: "</string>
@@ -55,4 +55,5 @@
     <string name="notifTourAttrAdded">Атракцията бе премахната успешно</string>
     <string name="notifTourAttrNotFound">Атракцията не съществува!</string>
     <string name="notifWrongTourAttrName">Невалидно име на атракцията!</string>
+    <string name="wrongTypeAttr">Грешен тип туристическа атракция!</string>
 </resources>

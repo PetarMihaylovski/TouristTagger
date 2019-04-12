@@ -15,6 +15,10 @@ public class AttractionDisplayCompound extends LinearLayout {
     private TextView tvSpecialAttribute;
     private CheckBox cbAddVisitedPlaces;
 
+    /**
+     * Constructors.
+     * @param context the context of the current state of the application.
+     */
     public AttractionDisplayCompound(Context context) {
         super(context);
         init();
@@ -35,16 +39,25 @@ public class AttractionDisplayCompound extends LinearLayout {
         init();
     }
 
+    /**
+     * Assigning the views
+     * Creates the LayoutInflater.
+     */
     private void init(){
         LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.custom_attraction_display, this);
 
+        //Assigning the views.
         this.tvName = findViewById(R.id.tvAttractionName);
         this.tvType = findViewById(R.id.tvAttractionType);
         this.tvSpecialAttribute= findViewById(R.id.tvSpecialAttribute);
         this.cbAddVisitedPlaces= findViewById(R.id.cbAdd);
     }
 
+    /**
+     * Getters.
+     * @return the required value.
+     */
     public TextView getTvName() {
         return tvName;
     }

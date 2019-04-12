@@ -12,8 +12,13 @@ public class ProgressBar extends View {
     private Paint backgroundPaint;
     private Paint foregroundPaint;
     private int value = 0;
-    private int maxvalue = 4; //number of screens in normal login path
+    private int maxvalue = 4; //Number of screens in normal login path.
 
+    /**
+     * Constructors.
+     *
+     * @param context The current context.
+     */
     public ProgressBar(Context context) {
         super(context);
         init();
@@ -34,6 +39,9 @@ public class ProgressBar extends View {
         init();
     }
 
+    /**
+     * Initializing the colors of the paints.
+     */
     private void init() {
         this.backgroundPaint = new Paint();
         this.backgroundPaint.setColor(Color.BLACK);
@@ -42,6 +50,13 @@ public class ProgressBar extends View {
         this.foregroundPaint.setColor(Color.YELLOW);
     }
 
+    /**
+     * Setting the value of the progress bar.
+     * If the value is bigger than the maximum amount of screens
+     * the value is not getting set.
+     *
+     * @param value The value to be set.
+     */
     public void setValue(int value) {
         if (value >= 0 && value <= maxvalue) {
             this.value = value;
@@ -49,13 +64,18 @@ public class ProgressBar extends View {
         invalidate();
     }
 
+    /**
+     * Drawing a progress bar.
+     *
+     * @param canvas The view, the drawing is drawn.
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
 
-        canvas.drawRect(0, 0, width - 1, height, backgroundPaint);
+        canvas.drawRect(0, 0, width, height, backgroundPaint);
         canvas.drawRect(0, 0, width * value / maxvalue, height, foregroundPaint);
     }
 }

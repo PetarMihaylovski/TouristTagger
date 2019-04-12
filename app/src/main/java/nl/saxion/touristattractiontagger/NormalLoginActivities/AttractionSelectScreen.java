@@ -22,19 +22,29 @@ import nl.saxion.touristattractiontagger.Views.ProgressBar;
 
 public class AttractionSelectScreen extends AppCompatActivity {
     private ListView listView;
-    private City chosenCity; //the chosenCity
-    private BasicUser user; //the user
+    private City chosenCity;
+    private BasicUser user;
     private ArrayList<TouristAttraction> allAttractions;
+    //Keys for data transfer.
     public static final String NAME_KEY = "randomKeyGen";
     public static final String CITY_KEY = "cityKeyGenerated";
     public static final int CONFIRMATION_CODE = 126;
 
+    /**
+     * Assigning the views.
+     * Displaying the tourist attractions
+     * from the chosen city.
+     * Getting information from the previous activity.
+     *
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attraction_select_screen);
 
         TextView tvNameAndLocation = findViewById(R.id.tvNameAndLocation);
+        this.listView = findViewById(R.id.lvAttractionsDisplay);
         ProgressBar progressBar = findViewById(R.id.pb2);
         progressBar.setValue(2);
 
@@ -45,25 +55,25 @@ public class AttractionSelectScreen extends AppCompatActivity {
         String cityName = intent.getStringExtra(CitySelectScreen.CITY_KEY);
         this.chosenCity = DataProvider.getCityByName(cityName);
 
-        try {
-            //Link the chosenCity with its arrayList of allAttractions.
-            this.allAttractions = chosenCity.getAttractions();
-        }
-        catch (NullPointerException npe) {
-            npe.printStackTrace();
-        }
+        //Link the chosenCity with its arrayList of allAttractions.
+        this.allAttractions = chosenCity.getAttractions();
 
         //Display the username and the chosenCity.
         tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), chosenCity.getName()));
 
+        //Instantiating an adapter and setting it to the listView.
         AttractionDisplayAdapter adapter = new AttractionDisplayAdapter(this, this.allAttractions, this.user);
-        this.listView = findViewById(R.id.lvAttractionsDisplay);
         this.listView.setAdapter(adapter);
 
+        //On click listeners
         locationDisplayOnClickListener();
         addAttractionsOnClickListener();
     }
 
+    /**
+     * When a specific tourist attraction is clicked,
+     * a toast appears showing the attraction's location.
+     */
     private void locationDisplayOnClickListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,7 +83,12 @@ public class AttractionSelectScreen extends AppCompatActivity {
         });
     }
 
-    private void addAttractionsOnClickListener(){
+    /**
+     * Switches to the next activity.
+     * Sending the user, who is choosing where he/she has been.
+     * Sending the chosen city.
+     */
+    private void addAttractionsOnClickListener() {
         Button addPlacesButton = findViewById(R.id.addPlacesButton);
         addPlacesButton.setOnClickListener(new View.OnClickListener() {
             @Override

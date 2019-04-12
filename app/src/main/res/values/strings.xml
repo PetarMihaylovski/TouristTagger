@@ -43,7 +43,7 @@
     <string name="notifCannotAddCity">Invalid information! City cannot be added.</string>
     <string name="notifCityAdded">City added successfully. Press the back button to exit.</string>
     <string name="notifAttrAdded">Attraction added successfully!</string>
-    <string name="notValidCity">Not a valid city!</string>
+    <string name="notValidAttraction">Not a valid tourist attraction!</string>
     <string name="specialCocktail">Special cocktail:</string>
     <string name="specialDish">Special dish:</string>
     <string name="exhibition">Exhibition:</string>
@@ -54,4 +54,5 @@
     <string name="notifTourAttrAdded">Tourist attraction removed successfully</string>
     <string name="notifTourAttrNotFound">Tourist attraction does not exist!</string>
     <string name="notifWrongTourAttrName">Invalid tourist attraction name!</string>
+    <string name="wrongTypeAttr">Wrong type of attraction!</string>
 </resources>

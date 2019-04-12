@@ -20,26 +20,42 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
     private ArrayList<TouristAttraction> attractions;
     private BasicUser user;
 
+    /**
+     * Constructor
+     *
+     * @param context the context of the current state
+     * @param objects the arrayList on which we are applying the adapter.
+     * @param user    the person who is selecting his visited tourist attractions.
+     */
     public AttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects, BasicUser user) {
         super(context, R.layout.activity_attraction_select_screen, objects);
         this.attractions = objects;
         this.user = user;
     }
 
+    /**
+     * Setting the way the data will be shown in the listView.
+     *
+     * @param position    the position of the clicked element
+     * @param convertView the view itself.
+     * @param parent      the parent
+     * @return returns the modified view. The way the data will be displayed.
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+        //The compound from where I am extracting the views.
         AttractionDisplayCompound adCompound = new AttractionDisplayCompound(getContext());
 
-        //assign the views.
+        //Assign the views.
         TextView tvName = adCompound.getTvName();
         TextView tvType = adCompound.getTvType();
         TextView tvSpecialAttribute = adCompound.getTvSpecialAttribute();
         this.cbAdd = adCompound.getCbAddVisitedPlaces();
 
-        //get the current tourist attraction.
+        //Get the clicked tourist attraction.
         final TouristAttraction currTouristAttraction = attractions.get(position);
 
-        //set the text for the listView.
+        //Set the text for the listView.
         String text = "Name: " + currTouristAttraction.getName();
         tvName.setText(text);
 
@@ -60,9 +76,10 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         }
         tvSpecialAttribute.setText(text);
 
-        //onClickListener for the checkbox.
+        //OnClickListener for the checkbox.
         cbAddOnClick(currTouristAttraction);
-        if (currTouristAttraction.isChecked()){
+
+        if (currTouristAttraction.isChecked()) {
             this.cbAdd.setChecked(true);
         }
         else {
@@ -72,18 +89,32 @@ public class AttractionDisplayAdapter extends ArrayAdapter<TouristAttraction> {
         return adCompound;
     }
 
+    /**
+     * On click listener for the checkboxes.
+     * When checked, the chosen tourist attraction will be added
+     * to the user's visited locations.
+     * When unchecked, the tourist attraction gets removed
+     * from the user's visited locations.
+     *
+     * @param currTouristAttraction the tourist attraction the user is adding/removing.
+     */
     private void cbAddOnClick(final TouristAttraction currTouristAttraction) {
         cbAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    //Sets the checkbox to checked.
                     currTouristAttraction.setChecked(true);
-                    if (!user.getVisitedVenues().contains(currTouristAttraction)){
+                    //Checks if the current tourist attraction is already in the list.
+                    if (!user.getVisitedVenues().contains(currTouristAttraction)) {
+                        //Adds it, if it is not.
                         user.addVisitedVenue(currTouristAttraction);
                     }
                 }
                 else {
+                    //Sets the checkbox to unchecked.
                     currTouristAttraction.setChecked(false);
+                    //Removes the current tourist attraction.
                     user.removeVisitedVenue(currTouristAttraction);
                 }
             }

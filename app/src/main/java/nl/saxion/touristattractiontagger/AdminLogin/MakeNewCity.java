@@ -18,45 +18,65 @@ public class MakeNewCity extends AppCompatActivity {
     private EditText etCityName;
     private EditText etCountryName;
     private EditText etPictureName;
-    private Button btnAdd;
+    private Button btnCreate;
     private String cityName;
+    //Key for data transfer.
     public static final String CITY_NAME_KEY = "the city key";
 
+    /**
+     * The method called, whenever the activity is started.
+     * Assigning the views from the .xml file and setting the values.
+     *
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_city);
 
+        //Assigning the views.
         this.etCityName = findViewById(R.id.etCityToBeDeleted);
         this.etCountryName = findViewById(R.id.etCountryName);
-        this.etPictureName= findViewById(R.id.etPictureName);
-        this.btnAdd = findViewById(R.id.btnAddCity);
+        this.etPictureName = findViewById(R.id.etPictureName);
+        this.btnCreate = findViewById(R.id.btnAddCity);
 
+        //Setting the values.
         this.etCityName.setText("");
         this.etCountryName.setText("");
         this.etPictureName.setText("");
         this.cityName = this.etCityName.getText().toString();
 
-        addCityOnClickListener();
+        //On click listener.
+        createCityOnClickListener();
     }
 
-    private void addCityOnClickListener(){
-        this.btnAdd.setOnClickListener(new View.OnClickListener() {
+    /**
+     * On click listener for the city create button.
+     * When called, it checks if the information entered
+     * is valid and creates a new city instance.
+     */
+    private void createCityOnClickListener() {
+        this.btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Getting the text from the input fields.
                 cityName = etCityName.getText().toString();
                 String countryName = etCountryName.getText().toString();
                 String pictureID = etPictureName.getText().toString();
 
-                if (cityName.equals("") || countryName.equals("")){
+                //Checks to see if the information entered is correct.
+                if (cityName.equals("") || countryName.equals("")) {
                     Toast.makeText(MakeNewCity.this, getString(R.string.notifCannotAddCity), Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    //Throws exception if the the user is trying to create already existing city.
                     try {
-                        DataProvider.addCity(new City(cityName, countryName,pictureID));
+                        //Successfully created the new city.
+                        DataProvider.addCity(new City(cityName, countryName, pictureID));
                         Toast.makeText(MakeNewCity.this, getString(R.string.notifCityAdded), Toast.LENGTH_LONG).show();
                     }
                     catch (SameCityException sce) {
+                        //Duplicate city
                         Toast.makeText(MakeNewCity.this, "" + sce, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -64,9 +84,13 @@ public class MakeNewCity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Transfers the information back to
+     * the parent activity.
+     */
     @Override
     public void onBackPressed() {
-        //empty intent, since it is only a message carrier.
+        //Empty intent, since it is only a message carrier.
         Intent messageCarrier = new Intent();
         messageCarrier.putExtra(CITY_NAME_KEY, this.cityName);
         setResult(RESULT_OK, messageCarrier);

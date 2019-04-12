@@ -22,11 +22,16 @@ public class OptionsScreen extends AppCompatActivity {
     private Button btnShowFriends;
     private Button btnEditPlaces;
     private BasicUser user;
-    public static final String USERNAME_KEY = "gettoBoye";
-    public static final String CITY_STR_KEY = "it is me MARIO!";
     private String cityAsString;
+    //Keys for data transfer.
+    public static final String CITY_STR_KEY = "cityStringKey";
+    public static final String USERNAME_KEY = "usernameKey";
 
-
+    /**
+     * Getting information from the previous activity.
+     * Assigning the views.
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,7 @@ public class OptionsScreen extends AppCompatActivity {
         cityAsString = prevScreen.getStringExtra(AttractionSelectScreen.CITY_KEY);
         City chosenCity = DataProvider.getCityByName(cityAsString);
 
+        //Assign the views.
         this.btnShowFriends = findViewById(R.id.btnShowFriends);
         this.btnEditPlaces = findViewById(R.id.btnEditPlaces);
         TextView tvCityNameDisplay = findViewById(R.id.tvCityName);
@@ -46,20 +52,33 @@ public class OptionsScreen extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.pb3);
         progressBar.setValue(3);
 
+        //Setting the values.
         tvCityNameDisplay.setText(String.format("%s", chosenCity));
         tvNameAndLocation.setText(String.format(getString(R.string.locationDisplay), this.user.getName(), chosenCity));
+
+        //Loading the images from the assets folder.
         loadImage(chosenCity);
+
+        //On click listeners.
         showFriendsOnClickListener();
         editSelectedPlacesOnClickListener();
     }
 
+    /**
+     * Loads the image assigned to the city.
+     * @param city the chosen city.
+     */
     private void loadImage(City city) {
-        //loads the image, based on the city chosen.
+        //Assigning the view.
         ImageView picture = findViewById(R.id.ivPicture);
+        //Opening a stream.
         InputStream inputStream = null;
         try {
+            //Getting the name of picture, that we want to display.
             String imageFile = city.getPictureID();
+            //Getting the picture from th assets folder.
             inputStream = getApplicationContext().getAssets().open(imageFile);
+            //Displaying the picture.
             Drawable d = Drawable.createFromStream(inputStream, null);
             picture.setImageDrawable(d);
         }
@@ -67,6 +86,7 @@ public class OptionsScreen extends AppCompatActivity {
             ioe.printStackTrace();
         }
         finally {
+            //Closing the streams that are opened.
             try {
                 if (inputStream != null) {
                     inputStream.close();
@@ -78,6 +98,11 @@ public class OptionsScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Changes to the next activity when called.
+     * Sends the user, who is choosing where he/she has been.
+     * Sends the city, chosen by the user.
+     */
     private void showFriendsOnClickListener() {
         this.btnShowFriends.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +115,10 @@ public class OptionsScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * Going back to the parent activity,
+     * so the user edits the places he has been.
+     */
     private void editSelectedPlacesOnClickListener() {
         this.btnEditPlaces.setOnClickListener(new View.OnClickListener() {
             @Override

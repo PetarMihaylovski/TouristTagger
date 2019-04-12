@@ -20,27 +20,48 @@ import nl.saxion.touristattractiontagger.Views.ProgressBar;
 public class CitySelectScreen extends AppCompatActivity {
     private static ArrayList<City> cities;
     private EditText nameInput;
+    private String selectedCity;
+    private ListView listView;
+    //Keys for data transfer.
     public static final String NAME_KEY = "name transfer";
     public static final String CITY_KEY = "city transfer";
-    private String selectedCity;
 
+    /**
+     * Assigning the views.
+     * Displaying the information.
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.city_select_screen);
 
-        cities = DataProvider.CITIES;
+        //Assigning the views.
         this.nameInput = findViewById(R.id.etNameInput);
+        this.listView = findViewById(R.id.lvCitiesDisplay);
+
+        //Setting the text.
         this.nameInput.setText("");
 
+        //Getting the arrayList of cities.
+        cities = DataProvider.CITIES;
+
+        //Setting up a progress bar.
         ProgressBar progressBar = findViewById(R.id.pb1);
         progressBar.setValue(1);
 
-        //Instantiating the list view with adapter.
+        //Instantiating an adapter for the listView.
         CityDisplayAdapter adapter = new CityDisplayAdapter(this, cities);
-        ListView listView = findViewById(R.id.lvCitiesDisplay);
-        listView.setAdapter(adapter);
+        this.listView.setAdapter(adapter);
 
+        //On click listener.
+        citiesOnItemClickListener();
+    }
+
+    /**
+     * On item click listener for the items in the list.
+     */
+    private void citiesOnItemClickListener(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -49,12 +70,15 @@ public class CitySelectScreen extends AppCompatActivity {
                     Toast.makeText(CitySelectScreen.this, getString(R.string.enterNamePrompt), Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    //getting the name from the editText.
+                    //Getting the name from the input.
                     String userName = nameInput.getText().toString();
                     selectedCity = cities.get(position).getName();
-                    //creating a new user instance.
+                    //Creating a new user instance.
                     DataProvider.addUser(userName, cities.get(position));
 
+                    //Switching activities.
+                    //Sending the user, who is choosing the locations.
+                    //Sending the selected city.
                     Intent switchScreen = new Intent(CitySelectScreen.this, AttractionSelectScreen.class);
                     switchScreen.putExtra(NAME_KEY, userName);
                     switchScreen.putExtra(CITY_KEY, selectedCity);

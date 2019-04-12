@@ -16,15 +16,30 @@ public class AdminAttractionDisplayAdapter extends ArrayAdapter<TouristAttractio
     private ArrayList<TouristAttraction> attractions;
     private LayoutInflater inflater;
 
+    /**
+     * Constructor
+     *
+     * @param context the context of the current state
+     * @param objects the arrayList on which we are applying the adapter.
+     */
     public AdminAttractionDisplayAdapter(Context context, ArrayList<TouristAttraction> objects) {
         super(context, R.layout.custom_admin_attractions_display, objects);
         this.attractions = objects;
         this.inflater = LayoutInflater.from(context);
     }
 
+    /**
+     * Setting the way the data will be shown in the listView.
+     *
+     * @param position    the position of the clicked element
+     * @param convertView the view itself.
+     * @param parent      the parent
+     * @return returns the modified view. The way the data will be displayed.
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
+        //Securing that the view is set
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.custom_admin_attractions_display, parent, false);
         }
@@ -33,10 +48,10 @@ public class AdminAttractionDisplayAdapter extends ArrayAdapter<TouristAttractio
         TextView tvAttractionType = convertView.findViewById(R.id.tvAttractionType);
         TextView tvSpecialAttribute = convertView.findViewById(R.id.tvSpecialAttribute);
 
-        //get the current tourist attraction.
+        //Get the current tourist attraction.
         final TouristAttraction currTouristAttraction = attractions.get(position);
 
-        //set the text for the listView.
+        //Set the text for the listView.
         String text = "Name: " + currTouristAttraction.getName();
         tvAttractionName.setText(text);
 

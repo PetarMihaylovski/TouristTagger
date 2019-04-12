@@ -23,36 +23,50 @@ import nl.saxion.touristattractiontagger.R;
 public class EditCity extends AppCompatActivity {
     private Button btnAddCity;
     private Button btnRemoveCity;
-    public static final int ADD_REQUEST_CODE = 123;
     private CityDisplayAdapter adapter;
     private ListView lvCities;
-    public static final String CITY_TRANSFER_KEY = "transKey";
+    //Keys for data transfer
+    public static final int ADD_REQUEST_CODE = 123;
+    public static final String CITY_TRANSFER_KEY = "transferKey";
 
-
+    /**
+     * The method called, whenever the activity is started.
+     * Assigning the views from the .xml file and
+     * displaying the data.
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_edit);
 
+        //Assigning the views
         this.btnAddCity = findViewById(R.id.btnAddCity);
         this.btnRemoveCity = findViewById(R.id.btnRemoveCity);
-        //creating the list view and adding an adapter.
         lvCities = findViewById(R.id.lvCities);
+
+        //Creating and setting the adapter for the listView.
         this.adapter = new CityDisplayAdapter(this, DataProvider.CITIES);
         lvCities.setAdapter(adapter);
 
+        //On click listeners.
         addCityOnClickListener();
         removeCityOnClick();
         citiesItemClickListener();
     }
 
+    /**
+     * On item click listener for the items in the listView.
+     * Whichever city is clicked, the screen changes to
+     * this city's tourist attractions.
+     */
     private void citiesItemClickListener() {
         this.lvCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //getting the clicked city
+                //Getting the clicked city
                 City chosenCity = DataProvider.CITIES.get(position);
-                //switching the activity and transferring the city which was clicked.
+                //Switching the activity and transferring the city which was clicked.
                 Intent switchScreen = new Intent(EditCity.this, TouristAttractionDetails.class);
                 switchScreen.putExtra(CITY_TRANSFER_KEY, chosenCity.getName());
                 startActivity(switchScreen);
@@ -60,14 +74,22 @@ public class EditCity extends AppCompatActivity {
         });
     }
 
+    /**
+     * On click listener for the remove button.
+     * When clicked a dialog box appears and the admin
+     * enters the name of the city he/she wants to delete.
+     */
     private void removeCityOnClick() {
         this.btnRemoveCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Creating the dialog box.
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(EditCity.this);
                 alertDialog.setTitle(R.string.cityRemove);
                 alertDialog.setMessage(R.string.cityNamePrompt);
 
+                //Setting a edit text view, so the admin can enter the name
+                //of the city he/she wants to delete.
                 final EditText input = new EditText(EditCity.this);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
@@ -75,28 +97,34 @@ public class EditCity extends AppCompatActivity {
                 input.setLayoutParams(params);
                 alertDialog.setView(input);
 
+                //Setting a button, which when clicked removes the city.
                 alertDialog.setPositiveButton(R.string.rmvPrompt, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String cityName = input.getText().toString();
-
-                        if (!cityName.equals("")){
-                            if (DataProvider.removeCityByName(cityName)){
+                        //Check if the user actually writes a name of the city.
+                        if (!cityName.equals("")) {
+                            //Removing the city.
+                            if (DataProvider.removeCityByName(cityName)) {
                                 adapter.remove(DataProvider.getCityByName(cityName));
                                 adapter.notifyDataSetChanged();
                                 Toast.makeText(EditCity.this, getString(R.string.notifRemoveSuccess), Toast.LENGTH_LONG).show();
                             }
                             else {
+                                //Notifying that the city he wrote does not exist.
                                 Toast.makeText(EditCity.this, getString(R.string.notifUnexistingCity), Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {
+                            //Notifying that the user has not provided an input.
                             Toast.makeText(EditCity.this, getString(R.string.notifInvalidCity), Toast.LENGTH_SHORT).show();
 
                         }
                     }
                 });
 
+                //Setting a button, which when clicked returns to the previous action,
+                //without removing anything.
                 alertDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -108,6 +136,10 @@ public class EditCity extends AppCompatActivity {
         });
     }
 
+    /**
+     * On click listener on the button for creating a new city.
+     * When clicked, a new activity opens up.
+     */
     private void addCityOnClickListener() {
         this.btnAddCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +150,15 @@ public class EditCity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Called when the user is getting returned from
+     * a previous activity to this.
+     * Getting the information the user provided in the other activity.
+     *
+     * @param requestCode code securing that we are receiving the information from the correct activity.
+     * @param resultCode  code showing that the data is transfered.
+     * @param data        the information from the other activity.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

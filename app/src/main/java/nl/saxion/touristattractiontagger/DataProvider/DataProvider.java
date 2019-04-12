@@ -15,29 +15,33 @@ import nl.saxion.touristattractiontagger.Users.BasicUser;
 import nl.saxion.touristattractiontagger.Users.User;
 
 public class DataProvider {
-    private static ArrayList<BasicUser> USERS;
-    public static ArrayList<City> CITIES;
-    public static ArrayList<String> DATA_DISPLAY;
-    public static Administrator ADMIN;
-    public static HashMap<User, ArrayList<TouristAttraction>> DUMMY_DATA;
+    private static ArrayList<User> USERS; //The list of users.
+    public static ArrayList<City> CITIES; //The list of cities.
+    public static ArrayList<String> DATA_DISPLAY; //The list in which the information is stored, ready to be displayed.
+    public static Administrator ADMIN; // The administrator user.
+    public static HashMap<User, ArrayList<TouristAttraction>> DUMMY_DATA; //The key is the dummy user, the value is the tourist attractions visited by the dummy user.
 
     static {
+        //Instantiating the fields.
         USERS = new ArrayList<>();
         CITIES = new ArrayList<>();
         DATA_DISPLAY = new ArrayList<>();
         ADMIN = new Administrator("admin", "admin");
         DUMMY_DATA = new HashMap<>();
 
+        //Creating the starting cities.
         City amsterdam = new City("Amsterdam", "Netherlands", "amsterdam_picture.jpg");
         City deventer = new City("Deventer", "Netherlands", "deventer_picture.jpg");
         City sofia = new City("Sofia", "Bulgaria", "sofia_picture.jpg");
         City plovdiv = new City("Plovdiv", "Bulgaria", "plovdiv_picture.jpeg");
 
+        //Creating the dummy users.
         BasicUser firstDummy = new BasicUser("Petar", sofia);
         BasicUser secondDummy = new BasicUser("Simona", amsterdam);
 
         try {
-            //mass-added since they are the starting cities and cannot have duplicates.
+            //Adding the cities to the arrayList.
+            //Mass-added since they are the starting cities and cannot have duplicates.
             addCity(sofia);
             addCity(plovdiv);
             addCity(amsterdam);
@@ -47,6 +51,9 @@ public class DataProvider {
             sce.printStackTrace();
         }
 
+        //Creating the tourist attractions.
+        //For some of the attractions, an instance is created
+        //so the dummy users can add them in their visited locations.
         amsterdam.addAttraction(new Bar("Door 74", "Reguliersdwarsstraat 74", "Bloody Marry"));
         amsterdam.addAttraction(new Bar("Brouwerij 't IJ", "Funenkade 7", "Cuba Libre"));
         amsterdam.addAttraction(new Bar("Hiding In Plain Sight", "Rapenburg 18", "Pina Colada"));
@@ -103,6 +110,7 @@ public class DataProvider {
         plovdiv.addAttraction(new Museum("Regional Ethnographic Museum", "Doctor Stoyan Chomakov 2", "Clothing and textile"));
         plovdiv.addAttraction(new Museum("Aviation Museum", "????", " Different types of airplanes"));
 
+        //Adding visited attractions for the dummy users.
         firstDummy.addVisitedVenue(friday);
         firstDummy.addVisitedVenue(boom);
         firstDummy.addVisitedVenue(national);
@@ -128,10 +136,15 @@ public class DataProvider {
                 throw new SameCityException();
             }
         }
-
         CITIES.add(city);
     }
 
+    /**
+     * Iterates through all the cities and returns the matching city.
+     *
+     * @param name The name, it is searching from.
+     * @return The city as an object, when the names match.
+     */
     public static City getCityByName(String name) {
         for (City city : CITIES) {
             if (city.getName().equals(name)) {
@@ -141,14 +154,32 @@ public class DataProvider {
         return null;
     }
 
+    /**
+     * Adding the data to the list
+     * in which it is stored.
+     *
+     * @param data The data, which is getting added.
+     */
     public static void addData(String data) {
         DATA_DISPLAY.add(data);
     }
 
+    /**
+     * Creates a new BasicUser and adds it to the arrayList
+     *
+     * @param name The name of the BasicUser.
+     * @param city The city he/she has visited.
+     */
     public static void addUser(String name, City city) {
         USERS.add(new BasicUser(name, city));
     }
 
+    /**
+     * Iterates through all the users and returns the matching user.
+     *
+     * @param name The name of the user we are searching for.
+     * @return The user as an object.
+     */
     public static User getUserByName(String name) {
         for (User user : USERS) {
             if (user.getName().equals(name)) {
