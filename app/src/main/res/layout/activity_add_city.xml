@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etCityToBeDeleted"
+        android:id="@+id/etCityToBeCreated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCityToBeDeleted" />
+        app:layout_constraintTop_toBottomOf="@+id/etCityToBeCreated" />
 
     <Button
         android:id="@+id/btnAddCity"

@@ -35,7 +35,7 @@ public class MakeNewCity extends AppCompatActivity {
         setContentView(R.layout.activity_add_city);
 
         //Assigning the views.
-        this.etCityName = findViewById(R.id.etCityToBeDeleted);
+        this.etCityName = findViewById(R.id.etCityToBeCreated);
         this.etCountryName = findViewById(R.id.etCountryName);
         this.etPictureName = findViewById(R.id.etPictureName);
         this.btnCreate = findViewById(R.id.btnAddCity);
