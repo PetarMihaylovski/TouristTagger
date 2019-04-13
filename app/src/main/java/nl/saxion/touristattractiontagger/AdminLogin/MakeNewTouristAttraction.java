@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
+import nl.saxion.touristattractiontagger.Exceptions.SameTouristAttractionException;
 import nl.saxion.touristattractiontagger.R;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Bar;
 import nl.saxion.touristattractiontagger.TouristsAttractions.Museum;
@@ -81,20 +82,40 @@ public class MakeNewTouristAttraction extends AppCompatActivity {
                 if (!(type.equals("") || name.equals("") || location.equals("") || specialAttribute.equals(""))) {
                     //Determining the type of attraction, the user is creating.
                     if ("bar".equals(type)) {
-                        chosenCity.addAttraction(new Bar(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        try {
+                            chosenCity.addAttraction(new Bar(name, location, specialAttribute));
+                            Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        }
+                        catch (SameTouristAttractionException stae) {
+                            Toast.makeText(MakeNewTouristAttraction.this, "" + stae, Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else if ("restaurant".equals(type)) {
-                        chosenCity.addAttraction(new Restaurant(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        try {
+                            chosenCity.addAttraction(new Restaurant(name, location, specialAttribute));
+                            Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        }
+                        catch (SameTouristAttractionException stae) {
+                            Toast.makeText(MakeNewTouristAttraction.this, "" + stae, Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else if ("museum".equals(type)) {
-                        chosenCity.addAttraction(new Museum(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        try {
+                            chosenCity.addAttraction(new Museum(name, location, specialAttribute));
+                            Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        }
+                        catch (SameTouristAttractionException stae) {
+                            Toast.makeText(MakeNewTouristAttraction.this, "" + stae, Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else if ("theater".equals(type)) {
-                        chosenCity.addAttraction(new Theater(name, location, specialAttribute));
-                        Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        try {
+                            chosenCity.addAttraction(new Theater(name, location, specialAttribute));
+                            Toast.makeText(MakeNewTouristAttraction.this, getString(R.string.notifAttrAdded), Toast.LENGTH_SHORT).show();
+                        }
+                        catch (SameTouristAttractionException stae) {
+                            Toast.makeText(MakeNewTouristAttraction.this, "" + stae, Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
                         //The users has entered invalid type of tourist attraction.

@@ -2,6 +2,7 @@ package nl.saxion.touristattractiontagger;
 
 import java.util.ArrayList;
 
+import nl.saxion.touristattractiontagger.Exceptions.SameTouristAttractionException;
 import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 
 public class City implements Comparable<City> {
@@ -25,12 +26,18 @@ public class City implements Comparable<City> {
     }
 
     /**
-     * Adding a tourist attraction to
-     * the city's attractions.
+     * Adds a tourist attraction to the city's
+     * already existing tourist attractions.
      *
-     * @param attraction The attraction to be added.
+     * @param attraction The tourist attraction to be added.
+     * @throws SameTouristAttractionException if a city with the same name and special attribute exist.
      */
-    public void addAttraction(TouristAttraction attraction) {
+    public void addAttraction(TouristAttraction attraction) throws SameTouristAttractionException {
+        for (TouristAttraction ta : this.attractions) {
+            if (ta.getName().equals(attraction.getName()) && ta.getSpecialAttribute().equals(attraction.getSpecialAttribute())) {
+                throw new SameTouristAttractionException();
+            }
+        }
         this.attractions.add(attraction);
     }
 
@@ -52,6 +59,7 @@ public class City implements Comparable<City> {
 
     /**
      * Finds a tourist attraction by name.
+     *
      * @param name The name of the tourist attraction.
      * @return the tourist attraction if found, null otherwise.
      */
@@ -66,6 +74,7 @@ public class City implements Comparable<City> {
 
     /**
      * Gives all the city's tourist attractions.
+     *
      * @return A copy of the original arrayList.
      */
     public ArrayList<TouristAttraction> getAttractions() {
@@ -75,6 +84,7 @@ public class City implements Comparable<City> {
 
     /**
      * Getters and setters.
+     *
      * @return The required value.
      */
     public String getPictureID() {
@@ -97,6 +107,7 @@ public class City implements Comparable<City> {
     /**
      * Sorts the cities alphabetically
      * by county's name.
+     *
      * @param city The city we compare with.
      * @return An integer indicating which city is alphabetically greater.
      */
