@@ -18,6 +18,12 @@ public class EditTouristAttraction extends AppCompatActivity {
     private EditText etLocation;
     private TouristAttraction ta;
 
+    /**
+     * Setting the input fields with the current
+     * information of the tourist attraction.
+     *
+     * @param savedInstanceState ??
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,10 @@ public class EditTouristAttraction extends AppCompatActivity {
         this.etLocation.setText(intent.getStringExtra(TouristAttractionDetails.TA_LOCATION));
     }
 
+    /**
+     * Getting the values from the input fields
+     * and changing the tourist attraction's data.
+     */
     @Override
     public void onBackPressed() {
         //Getting the values from the input fields.

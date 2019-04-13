@@ -26,7 +26,7 @@ public class EditCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_city);
 
-        //Getting the information from the parent intent.
+        //Getting the information from the parent activity.
         Intent intent = getIntent();
         etCityName = findViewById(R.id.etNameCity);
         etCountryName = findViewById(R.id.etCountryName);
@@ -43,6 +43,7 @@ public class EditCity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
+        //Getting the input fields.
         String name = this.etCityName.getText().toString();
         String country = this.etCountryName.getText().toString();
 
