@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminLogin.EditCity"></activity>
+        <activity android:name=".AdminLogin.EditTouristAttraction"></activity>
+        <activity android:name=".AdminLogin.EditCity" />
         <activity android:name=".AdminLogin.MakeNewTouristAttraction" />
         <activity android:name=".AdminLogin.TouristAttractionDetails" />
         <activity android:name=".AdminLogin.MakeNewCity" />

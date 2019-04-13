@@ -31,6 +31,11 @@ public class Museum extends TouristAttraction {
     }
 
     @Override
+    public void setSpecialAttribute(String specialAttribute) {
+        this.exhibition = specialAttribute;
+    }
+
+    @Override
     public String toString() {
         return super.toString();
     }

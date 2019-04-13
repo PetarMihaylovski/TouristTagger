@@ -30,6 +30,11 @@ public class Theater extends TouristAttraction {
     }
 
     @Override
+    public void setSpecialAttribute(String specialAttribute) {
+        this.play = specialAttribute;
+    }
+
+    @Override
     public String toString() {
         return super.toString();
     }

@@ -41,6 +41,8 @@ public abstract class TouristAttraction implements Comparable<TouristAttraction>
 
     public abstract String getSpecialAttribute();
 
+    public abstract void setSpecialAttribute(String specialAttribute);
+
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
@@ -48,6 +50,15 @@ public abstract class TouristAttraction implements Comparable<TouristAttraction>
     public boolean isChecked() {
         return checked;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
 
     /**
      * The custom way the tourist attractions are sorted.

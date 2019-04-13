@@ -26,6 +26,11 @@ public class Restaurant extends TouristAttraction {
     }
 
     @Override
+    public void setSpecialAttribute(String specialAttribute) {
+        this.specialDish = specialAttribute;
+    }
+
+    @Override
     public String getType() {
         return "Restaurant";
     }

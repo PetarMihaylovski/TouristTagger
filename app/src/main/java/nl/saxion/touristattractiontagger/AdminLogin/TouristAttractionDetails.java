@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -27,14 +28,17 @@ import nl.saxion.touristattractiontagger.TouristsAttractions.TouristAttraction;
 public class TouristAttractionDetails extends AppCompatActivity {
 
     private City chosenCity;
-    private Button btnAddAttraction;
-    private Button btnRemoveAttraction;
-    private Button btnGotoLoginScreen;
     private ArrayList<TouristAttraction> touristAttractions;
     private AdminAttractionDisplayAdapter adapter;
+    private ListView lvAttractionsDisplay;
     //Keys for data transfer
     public static final int NEW_CITY = 1457;
     public static final String CITY_NAME_KEY = "hiddenKey";
+    public static final String TA_NAME = "touristAttractionName";
+    public static final String TA_SPEC_ATTRIBUTE= "touristAttractionSpecAttribute";
+    public static final String TA_LOCATION= "touristAttractionLocation";
+    public static final int SWITCHING_INTENTS = 744;
+
 
     /**
      * Gets the chosen city from the previous activity. (CityDisplayAdmin activity)
@@ -56,22 +60,35 @@ public class TouristAttractionDetails extends AppCompatActivity {
 
         //Assigning the views.
         TextView tvChosenCity = findViewById(R.id.tvChosenCity);
-        this.btnAddAttraction = findViewById(R.id.btnAddTouristAttr);
-        this.btnRemoveAttraction = findViewById(R.id.btnRemoveTouristAttr);
-        this.btnGotoLoginScreen = findViewById(R.id.btnBackToLoginScreen);
 
         //Setting the display for the chosen city.
         tvChosenCity.setText(chosenCity.toString());
 
         //Setting the adapter for the data display.
-        adapter = new AdminAttractionDisplayAdapter(this, touristAttractions);
-        ListView lvAttractionsDisplay = findViewById(R.id.lvTouristAttrAdminDisplay);
-        lvAttractionsDisplay.setAdapter(adapter);
+        this.adapter = new AdminAttractionDisplayAdapter(this, touristAttractions);
+        this.lvAttractionsDisplay = findViewById(R.id.lvTouristAttrAdminDisplay);
+        this.lvAttractionsDisplay.setAdapter(adapter);
 
         //On click listeners.
         addNewAttractionOnClickListener();
         removeAttractionOnClickButton();
         gotoLoginScreenOnClickListener();
+        attractionsOnItemListener();
+    }
+
+    private void attractionsOnItemListener(){
+        this.lvAttractionsDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TouristAttraction ta = chosenCity.getAttractions().get(position);
+                Intent switchScreens = new Intent(TouristAttractionDetails.this, EditTouristAttraction.class);
+                switchScreens.putExtra(CITY_NAME_KEY, chosenCity.getName());
+                switchScreens.putExtra(TA_NAME, ta.getName());
+                switchScreens.putExtra(TA_SPEC_ATTRIBUTE, ta.getSpecialAttribute());
+                switchScreens.putExtra(TA_LOCATION, ta.getLocation());
+                startActivityForResult(switchScreens, SWITCHING_INTENTS);
+            }
+        });
     }
 
     /**
@@ -82,7 +99,8 @@ public class TouristAttractionDetails extends AppCompatActivity {
      * be deleted.
      */
     private void removeAttractionOnClickButton() {
-        this.btnRemoveAttraction.setOnClickListener(new View.OnClickListener() {
+        Button btnRemoveAttraction = findViewById(R.id.btnRemoveTouristAttr);
+        btnRemoveAttraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creating a dialog box.
@@ -141,9 +159,11 @@ public class TouristAttractionDetails extends AppCompatActivity {
     /**
      * Starting a new activity,
      * for creating a new tourist attraction.
+     * Passing the city name as information.
      */
     private void addNewAttractionOnClickListener() {
-        this.btnAddAttraction.setOnClickListener(new View.OnClickListener() {
+        Button btnAddAttraction = findViewById(R.id.btnAddTouristAttr);
+        btnAddAttraction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent switchScreens = new Intent(TouristAttractionDetails.this, MakeNewTouristAttraction.class);
@@ -155,6 +175,8 @@ public class TouristAttractionDetails extends AppCompatActivity {
 
     /**
      * Gets the information from the child activity.
+     * No checks from which activity the information is coming,
+     * because the actions from both activities is the same.
      *
      * @param requestCode code securing that we are receiving the information from the correct activity.
      * @param resultCode  code showing that the data is transferred.
@@ -163,18 +185,16 @@ public class TouristAttractionDetails extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (NEW_CITY == requestCode && RESULT_OK == resultCode) {
-            adapter.notifyDataSetChanged();
-            Collections.sort(this.touristAttractions);
-        }
+        Collections.sort(this.touristAttractions);
+        adapter.notifyDataSetChanged();
     }
 
     /**
      * Returns to the starting screen of the application.
      */
     private void gotoLoginScreenOnClickListener() {
-        this.btnGotoLoginScreen.setOnClickListener(new View.OnClickListener() {
+        Button btnGotoLoginScreen = findViewById(R.id.btnBackToLoginScreen);
+        btnGotoLoginScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent switchIntent = new Intent(TouristAttractionDetails.this, LoginScreen.class);

@@ -26,6 +26,11 @@ public class Bar extends TouristAttraction {
     }
 
     @Override
+    public void setSpecialAttribute(String specialAttribute) {
+        this.specialCocktail = specialAttribute;
+    }
+
+    @Override
     public String getType() {
         return "Bar";
     }

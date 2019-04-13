@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import nl.saxion.touristattractiontagger.City;
 import nl.saxion.touristattractiontagger.DataProvider.DataProvider;
@@ -42,9 +43,17 @@ public class EditCity extends AppCompatActivity {
      */
     @Override
     public void onBackPressed() {
+        String name = this.etCityName.getText().toString();
+        String country = this.etCountryName.getText().toString();
+
         //Changing the name of the city.
-        this.chosenCity.setName(this.etCityName.getText().toString());
-        this.chosenCity.setCountry(this.etCountryName.getText().toString());
-        super.onBackPressed();
+        if (name.equals("") || country.equals("")) {
+            Toast.makeText(this, getString(R.string.invalidInfo), Toast.LENGTH_SHORT).show();
+        }
+        else {
+            this.chosenCity.setName(name);
+            this.chosenCity.setCountry(country);
+            super.onBackPressed();
+        }
     }
 }

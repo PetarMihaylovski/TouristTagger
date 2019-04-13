@@ -44,8 +44,8 @@ public class CityDisplayAdmin extends AppCompatActivity {
 
         //Creating and setting the adapter for the listView.
         this.adapter = new CityDisplayAdapter(this, DataProvider.CITIES);
-        lvCities = findViewById(R.id.lvCities);
-        lvCities.setAdapter(adapter);
+        this.lvCities = findViewById(R.id.lvCities);
+        this.lvCities.setAdapter(adapter);
 
         //On click listeners.
         addCityOnClickListener();
@@ -222,14 +222,14 @@ public class CityDisplayAdmin extends AppCompatActivity {
      * from both activities that this screen can be resumed, the action is the same.
      *
      * @param requestCode code securing that we are receiving the information from the correct activity.
-     * @param resultCode  code showing that the data is transfered.
+     * @param resultCode  code showing that the data is transferred.
      * @param data        the information from the other activity.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        adapter.notifyDataSetChanged();
         Collections.sort(DataProvider.CITIES);
+        adapter.notifyDataSetChanged();
     }
 }
 

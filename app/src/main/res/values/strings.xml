@@ -59,4 +59,5 @@
     <string name="editCity">Edit a city</string>
     <string name="editCityMsg">Enter the name of the city you want to edit.</string>
     <string name="edit">Edit</string>
+    <string name="invalidInfo">Invalid information</string>
 </resources>

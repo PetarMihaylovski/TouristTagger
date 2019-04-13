@@ -60,4 +60,5 @@
     <string name="editCity">Обнови информация за град.</string>
     <string name="editCityMsg">Въведете името на града, който искате да обновите.</string>
     <string name="edit">Обнови</string>
+    <string name="invalidInfo">Невалидна информация</string>
 </resources>
