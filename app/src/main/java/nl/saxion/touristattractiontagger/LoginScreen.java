@@ -62,7 +62,7 @@ public class LoginScreen extends AppCompatActivity {
                     startActivity(switchScreen);
                 }
                 else {
-                    Toast.makeText(LoginScreen.this, getString(R.string.wrongUsernameorPasswordPrompt), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginScreen.this, getString(R.string.wrongUsernameОrPasswordPrompt), Toast.LENGTH_SHORT).show();
                 }
             }
         });

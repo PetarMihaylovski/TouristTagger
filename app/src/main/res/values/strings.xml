@@ -28,7 +28,7 @@
     <string name="typesOfAttractions">Bar/Restaurant/Museum/Theater</string>
     <string name="addAttractionNameET">Enter the name:</string>
     <string name="addAttractionLocationET">Enter street name and number:</string>
-    <string name="wrongUsernameorPasswordPrompt">Wrong username or password!</string>
+    <string name="wrongUsernameОrPasswordPrompt">Wrong username or password!</string>
     <string name="adminUserAndPass">username: admin, password: admin</string>
     <string name="enterNamePrompt">Please enter your name.</string>
     <string name="locationDisplay">%s is in %s</string>
@@ -55,5 +55,8 @@
     <string name="notifTourAttrNotFound">Tourist attraction does not exist!</string>
     <string name="notifWrongTourAttrName">Invalid tourist attraction name!</string>
     <string name="wrongTypeAttr">Wrong type of attraction!</string>
-    <string name="editButton">Edit a city</string>
+    <string name="backButtonPrompt">Press the back button when ready!</string>
+    <string name="editCity">Edit a city</string>
+    <string name="editCityMsg">Enter the name of the city you want to edit.</string>
+    <string name="edit">Edit</string>
 </resources>

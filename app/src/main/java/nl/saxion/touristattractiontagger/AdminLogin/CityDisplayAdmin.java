@@ -34,6 +34,7 @@ public class CityDisplayAdmin extends AppCompatActivity {
     /**
      * The method called, whenever the activity is started.
      * Displaying the data.
+     *
      * @param savedInstanceState ??
      */
     @Override
@@ -150,14 +151,19 @@ public class CityDisplayAdmin extends AppCompatActivity {
         });
     }
 
-    private void editCityOnClickListener(){
+    /**
+     * On click listener for the edit button.
+     * Creates a dialog box, asking for city name.
+     * If the city exists, a new activity will be called.
+     */
+    private void editCityOnClickListener() {
         Button btnEditCity = findViewById(R.id.btnEditCity);
         btnEditCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(CityDisplayAdmin.this);
-                alertDialog.setTitle("Edit a city");
-                alertDialog.setMessage("Enter the name of the city you want to edit.");
+                alertDialog.setTitle(R.string.editCity);
+                alertDialog.setMessage(R.string.editCityMsg);
 
                 //Setting a edit text view, so the admin can enter the name
                 //of the city he/she wants to edit.
@@ -169,23 +175,23 @@ public class CityDisplayAdmin extends AppCompatActivity {
                 alertDialog.setView(input);
 
                 //Setting a button, which when clicked opens a new activity to edit the city.
-                alertDialog.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                alertDialog.setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String cityName = input.getText().toString().toLowerCase();
                         //Check if the user actually writes a name of the city.
                         if (!cityName.equals("")) {
                             //Switching intents to EditCity activity, where the user can edit the name and the country of the city.
-                           if (cityName.equals(DataProvider.getCityByName(cityName).getName().toLowerCase())){
-                               City cityToBeEdited = DataProvider.getCityByName(cityName);
-                               Intent switchScreens = new Intent(CityDisplayAdmin.this, EditCity.class);
-                               switchScreens.putExtra(CITY_EDIT_NAME_KEY, cityToBeEdited.getName());
-                               switchScreens.putExtra(CITY_EDIT_COUNTRY_KEY, cityToBeEdited.getCountry());
-                               startActivityForResult(switchScreens, EDIT_CITY );
-                           }
-                           else {
-                               Toast.makeText(CityDisplayAdmin.this, getString(R.string.notifUnexistingCity), Toast.LENGTH_SHORT).show();
-                           }
+                            if (cityName.equals(DataProvider.getCityByName(cityName).getName().toLowerCase())) {
+                                City cityToBeEdited = DataProvider.getCityByName(cityName);
+                                Intent switchScreens = new Intent(CityDisplayAdmin.this, EditCity.class);
+                                switchScreens.putExtra(CITY_EDIT_NAME_KEY, cityToBeEdited.getName());
+                                switchScreens.putExtra(CITY_EDIT_COUNTRY_KEY, cityToBeEdited.getCountry());
+                                startActivityForResult(switchScreens, EDIT_CITY);
+                            }
+                            else {
+                                Toast.makeText(CityDisplayAdmin.this, getString(R.string.notifUnexistingCity), Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else {
                             //Notifying that the user has not provided an input.
@@ -212,6 +218,8 @@ public class CityDisplayAdmin extends AppCompatActivity {
      * Called when the user is getting returned from
      * a previous activity to this.
      * Getting the information the user provided in the other activity.
+     * No checks, for which activity the program is coming from, because
+     * from both activities that this screen can be resumed, the action is the same.
      *
      * @param requestCode code securing that we are receiving the information from the correct activity.
      * @param resultCode  code showing that the data is transfered.
@@ -220,11 +228,8 @@ public class CityDisplayAdmin extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ADD_REQUEST_CODE && resultCode == RESULT_OK) {
-            adapter.notifyDataSetChanged();
-            Collections.sort(DataProvider.CITIES);
-        }
+        adapter.notifyDataSetChanged();
+        Collections.sort(DataProvider.CITIES);
     }
 }
 

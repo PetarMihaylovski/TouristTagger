@@ -29,7 +29,7 @@
     <string name="typesOfAttractions">Бар/Ресторант/Музей/Театър</string>
     <string name="addAttractionNameET">Въведи името:</string>
     <string name="addAttractionLocationET">Въведи номер и име на улицата:</string>
-    <string name="wrongUsernameorPasswordPrompt">Грешно име или парола!</string>
+    <string name="wrongUsernameОrPasswordPrompt">Грешно име или парола!</string>
     <string name="adminUserAndPass">Име: admin, парола: admin</string>
     <string name="enterNamePrompt">Моля въведете си името</string>
     <string name="locationDisplay">%s е в %s</string>
@@ -56,5 +56,8 @@
     <string name="notifTourAttrNotFound">Атракцията не съществува!</string>
     <string name="notifWrongTourAttrName">Невалидно име на атракцията!</string>
     <string name="wrongTypeAttr">Грешен тип туристическа атракция!</string>
-    <string name="editButton">Редактирай информацията</string>
+    <string name="backButtonPrompt">Натисни бутона за връщане, когато сте готови!</string>
+    <string name="editCity">Обнови информация за град.</string>
+    <string name="editCityMsg">Въведете името на града, който искате да обновите.</string>
+    <string name="edit">Обнови</string>
 </resources>
