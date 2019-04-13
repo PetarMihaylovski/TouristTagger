@@ -165,7 +165,7 @@ public class DataProvider {
      */
     public static City getCityByName(String name) {
         for (City city : CITIES) {
-            if (city.getName().equals(name)) {
+            if (city.getName().toLowerCase().equals(name.toLowerCase())) {
                 return city;
             }
         }

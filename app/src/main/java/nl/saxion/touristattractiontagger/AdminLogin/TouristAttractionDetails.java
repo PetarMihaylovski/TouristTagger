@@ -37,7 +37,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
     public static final String CITY_NAME_KEY = "hiddenKey";
 
     /**
-     * Gets the chosen city from the previous activity. (EditCity activity)
+     * Gets the chosen city from the previous activity. (CityDisplayAdmin activity)
      * Assigning the views.
      * Displaying the tourist attractions of the chosen city.
      *
@@ -50,7 +50,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
 
         //Getting the information from the previous activity.
         Intent intent = getIntent();
-        String cityName = intent.getStringExtra(EditCity.CITY_TRANSFER_KEY);
+        String cityName = intent.getStringExtra(CityDisplayAdmin.CITY_TRANSFER_KEY);
         this.chosenCity = DataProvider.getCityByName(cityName);
         touristAttractions = chosenCity.getAttractions();
 

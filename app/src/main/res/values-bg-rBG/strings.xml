@@ -56,4 +56,5 @@
     <string name="notifTourAttrNotFound">Атракцията не съществува!</string>
     <string name="notifWrongTourAttrName">Невалидно име на атракцията!</string>
     <string name="wrongTypeAttr">Грешен тип туристическа атракция!</string>
+    <string name="editButton">Редактирай информацията</string>
 </resources>

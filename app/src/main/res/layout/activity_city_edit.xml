@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminLogin.EditCity">
+    tools:context=".AdminLogin.CityDisplayAdmin">
 
     <TextView
         android:id="@+id/tvNotification"
@@ -41,11 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="17dp"
         android:layout_marginBottom="64dp"
         android:text="@string/addCityText"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnRemoveCity"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditCity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintVertical_bias="0.5" />
@@ -54,14 +55,14 @@
         android:id="@+id/btnRemoveCity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="64dp"
         android:text="@string/removeCity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAddCity"
+        app:layout_constraintStart_toEndOf="@+id/btnEditCity"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintVertical_bias="0.5" />
 
@@ -71,4 +72,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="560dp" />
+
+    <Button
+        android:id="@+id/btnEditCity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/editButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnRemoveCity"
+        app:layout_constraintStart_toEndOf="@+id/btnAddCity"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 </android.support.constraint.ConstraintLayout>
