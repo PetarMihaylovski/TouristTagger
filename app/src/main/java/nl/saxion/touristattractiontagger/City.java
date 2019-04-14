@@ -26,6 +26,19 @@ public class City implements Comparable<City> {
     }
 
     /**
+     * Constructor without the picture variable.
+     *
+     * @param name    The name of the city.
+     * @param country The name of the country
+     */
+    public City(String name, String country) {
+        this.name = name;
+        this.country = country;
+        this.attractions = new ArrayList<>();
+        this.pictureID = "picture.jpg";
+    }
+
+    /**
      * Adds a tourist attraction to the city's
      * already existing tourist attractions.
      *

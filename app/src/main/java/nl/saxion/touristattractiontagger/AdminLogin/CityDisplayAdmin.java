@@ -95,6 +95,7 @@ public class CityDisplayAdmin extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(params);
+                input.setText("");
                 alertDialog.setView(input);
 
                 //Setting a button, which when clicked removes the city.
@@ -172,6 +173,7 @@ public class CityDisplayAdmin extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(params);
+                input.setText("");
                 alertDialog.setView(input);
 
                 //Setting a button, which when clicked opens a new activity to edit the city.

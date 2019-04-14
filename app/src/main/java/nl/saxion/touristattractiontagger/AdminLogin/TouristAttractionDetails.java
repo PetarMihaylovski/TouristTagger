@@ -115,6 +115,7 @@ public class TouristAttractionDetails extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.MATCH_PARENT);
                 input.setLayoutParams(params);
+                input.setText("");
                 alertDialog.setView(input);
 
                 //Creating the cancel button, which only closes the dialog box.

@@ -17,7 +17,6 @@ public class MakeNewCity extends AppCompatActivity {
 
     private EditText etCityName;
     private EditText etCountryName;
-    private EditText etPictureName;
     private Button btnCreate;
     private String cityName;
     //Key for data transfer.
@@ -37,13 +36,11 @@ public class MakeNewCity extends AppCompatActivity {
         //Assigning the views.
         this.etCityName = findViewById(R.id.etCityToBeCreated);
         this.etCountryName = findViewById(R.id.etCountryName);
-        this.etPictureName = findViewById(R.id.etPictureName);
         this.btnCreate = findViewById(R.id.btnAddCity);
 
         //Setting the values.
         this.etCityName.setText("");
         this.etCountryName.setText("");
-        this.etPictureName.setText("");
         this.cityName = this.etCityName.getText().toString();
 
         //On click listener.
@@ -62,7 +59,6 @@ public class MakeNewCity extends AppCompatActivity {
                 //Getting the text from the input fields.
                 cityName = etCityName.getText().toString();
                 String countryName = etCountryName.getText().toString();
-                String pictureID = etPictureName.getText().toString();
 
                 //Checks to see if the information entered is correct.
                 if (cityName.equals("") || countryName.equals("")) {
@@ -72,7 +68,7 @@ public class MakeNewCity extends AppCompatActivity {
                     //Throws exception if the the user is trying to create already existing city.
                     try {
                         //Successfully created the new city.
-                        DataProvider.addCity(new City(cityName, countryName, pictureID));
+                        DataProvider.addCity(new City(cityName, countryName));
                         Toast.makeText(MakeNewCity.this, getString(R.string.notifCityAdded), Toast.LENGTH_LONG).show();
                     }
                     catch (SameCityException sce) {
